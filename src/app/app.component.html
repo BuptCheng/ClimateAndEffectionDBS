@@ -1,5 +1,7 @@
 <app-header></app-header>
 <div [ngSwitch]="page">
-  <app-search *ngSwitchCase="'search'"></app-search>
+  <app-climate *ngSwitchCase="'SearchClimate'"></app-climate>
+  <app-flight *ngSwitchCase="'SearchFlight'"></app-flight>
   <app-query *ngSwitchCase="'query'"></app-query>
+  <app-homepage *ngSwitchCase="'homepage'"></app-homepage>
 </div>

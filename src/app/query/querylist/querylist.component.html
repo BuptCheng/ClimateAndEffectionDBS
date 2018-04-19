@@ -1,8 +1,19 @@
 <div class="row">
   <div class="col-xs-10">
-  <ul class="list-group"
-  *ngFor="let singleele of queryresult">
-    wid-{{singleele.wid}}  temperature-{{singleele.temperature}}
-  </ul>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">wid</th>
+        <th scope="col">temperature</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr
+        *ngFor="let singleele of queryresult">
+        <td>{{singleele.wid}}</td>
+        <td>{{singleele.temperature}}</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>

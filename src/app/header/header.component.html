@@ -1,21 +1,16 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a href="#" class="navbar-brand">ClimateAndEffectionDBS</a>
+      <a href="#" class="navbar-brand"  (click)="switch('homepage')" > ClimateAndEffectionDBS </a>
     </div>
     <div class="navbar-default">
       <ul class="nav navbar-nav">
-        <li><a href="#" (click)="switch('search')">Search</a></li>
+        <li><a href="#" (click)="switch('SearchClimate')">SearchClimate</a></li>
+        <li><a href="#" (click)="switch('SearchFlight')">SearchFlight</a></li>
         <li><a href="#" (click)="switch('query')">Query</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" role="button">Username <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Setting</a></li>
-            <li><a href="#">LogOut</a></li>
-          </ul>
-        </li>
+        <li><a href="#" (click)="switch('query')">Username</a></li>
       </ul>
     </div>
   </div>
