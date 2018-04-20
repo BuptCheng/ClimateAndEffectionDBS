@@ -34,7 +34,7 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
 
-        log.info("Creating tables");
+        log.info("Connect to the database");
 
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
@@ -43,7 +43,7 @@ public class Application implements CommandLineRunner {
                  dataSource.setUsername("tiangebu");
                  dataSource.setPassword("Welcome123");
         jdbcTemplate = new JdbcTemplate(dataSource);
-        //jdbcTemplate.execute("DROP TABLE customers IF EXISTS");
+
         jdbcTemplate.execute("CREATE TABLE customers2(" +
                 "id INTEGER , first_name VARCHAR(255), last_name VARCHAR(255))");
 
