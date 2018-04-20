@@ -1,0 +1,19 @@
+mat-toolbar{
+    width: 400px;
+    margin: 0 auto;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 24px;
+}
+
+mat-card{
+    min-height: auto;
+    width: 398px;
+    margin: 0 auto;
+}
+
+.mat-form-field{
+    display: flex;
+    flex-direction: column;
+}
+

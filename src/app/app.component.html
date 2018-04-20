@@ -1,0 +1,10 @@
+<app-header></app-header>
+<div [ngSwitch]="page">
+  <app-search *ngSwitchCase="'search'"></app-search>
+  <app-query *ngSwitchCase="'query'"></app-query>
+</div>
+   
+
+      
+<router-outlet></router-outlet>
+
