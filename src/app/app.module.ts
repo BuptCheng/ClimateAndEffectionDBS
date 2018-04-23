@@ -37,7 +37,6 @@ import { ClimateComponent } from './climate/climate.component';
 import { FlightComponent } from './flight/flight.component';
 import { ClimatelistComponent } from './climate/climatelist/climatelist.component';
 import { FlightlistComponent } from './flight/flightlist/flightlist.component';
-import { FlightdetailComponent } from './flight/flightdetail/flightdetail.component';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpModule} from '@angular/http';
 import {PostandgetService} from './shared/postandget.service';
@@ -47,6 +46,7 @@ const appRoutes: Routes = [
   { path: 'climatestart', component: ClimateComponent} ,
   { path: 'climatestart/list', component: ClimatelistComponent } ,
   { path: 'flight', component: FlightComponent } ,
+  { path: 'flight/list', component: FlightlistComponent } ,
   { path: 'query', component: QueryComponent } ,
 ];
 
@@ -62,7 +62,6 @@ const appRoutes: Routes = [
     FlightComponent,
     ClimatelistComponent,
     FlightlistComponent,
-    FlightdetailComponent,
   ],
   imports: [
     BrowserModule,
