@@ -25,8 +25,6 @@ public class WeatherController {
 
     @Autowired
     private LocationRepository locationRepository;
-    @Autowired
-    private WeatherRepository weatherRepository;
 
     @RequestMapping("/weather/location/name/{name}")
     public List<Location> locationHandler(@RequestParam(value="name", defaultValue="Miami") String name) {
@@ -72,7 +70,7 @@ public class WeatherController {
         //return weatherRepository.findBywidAndlocation(id);
         //return entityManager.createNamedQuery("complexQuery").setParameter(1,id).getResultList();
         String query = "select ceil(w.wid) as wid, to_char(w.wdate,'yy-mm-dd') as windDate,l.city_name as city,  ceil(h.humidity) as humidity," +
-                "             ceil(p.pressure) as pressure, round(t.temperature,2) as temperature, ceil(ws.wind_speed) as windSpeed, wd.description as windDesc " +
+                "ceil(p.pressure) as pressure, round(t.temperature,2) as temperature, ceil(ws.wind_speed) as windSpeed, wd.description as windDesc " +
                 "from Location l left outer join Weather w on w.location_Id = l.location_Id left outer join Humidity h on w.wid =h.wid " +
                 "left outer join Pressure p on w.wid =p.wid left outer join Temperature t on w.wid =t.wid  left outer join Weather_Description wd " +
                 "on w.wid = wd.wid left outer join Wind_Speed ws on w.wid = ws.wid where w.wdate = to_date(?1,'yyyy--mm--dd') and l.city_name = ?2";
@@ -80,18 +78,34 @@ public class WeatherController {
         return entityManager.createNativeQuery(query, WeatherInfo.class).setParameter(1,date).setParameter(2,city).getResultList();
 
     }
+    @RequestMapping("/weather/dateandtemperature")
+    public List<WeatherInfo> weatherHandler4(@RequestParam(value="date", defaultValue="2015-01-01") String date, @RequestParam(value="min", defaultValue="-100") int min,@RequestParam(value="max", defaultValue="200") int max) {
 
+        String query = "select ceil(w.wid) as wid, to_char(w.wdate,'yy-mm-dd') as windDate,l.city_name as city,  ceil(h.humidity) as humidity," +
+                "ceil(p.pressure) as pressure, round(t.temperature,2) as temperature, ceil(ws.wind_speed) as windSpeed, wd.description as windDesc " +
+                "from Location l left outer join Weather w on w.location_Id = l.location_Id left outer join Humidity h on w.wid =h.wid " +
+                "left outer join Pressure p on w.wid =p.wid left outer join Temperature t on w.wid =t.wid  left outer join Weather_Description wd " +
+                "on w.wid = wd.wid left outer join Wind_Speed ws on w.wid = ws.wid where w.wdate = to_date(?1,'yyyy--mm--dd') and t.temperature > ?2 and t.temperature < ?3";
 
+        return entityManager.createNativeQuery(query, WeatherInfo.class).setParameter(1,date).setParameter(2,min).setParameter(3,max).getResultList();
 
-    @RequestMapping("queryAll")
-    @ResponseBody
-    public List<Location> queryAll(){
-        List<Location> list = new ArrayList<>();
-        for(Location l : locationRepository.findAll()){
-            list.add(l);
-        }
-        return list;
     }
+    @RequestMapping("/weather/cityandtemperature")
+    public List<WeatherInfo> weatherHandler5(@RequestParam(value="city", defaultValue="Miami") String city, @RequestParam(value="min", defaultValue="-100") int min,@RequestParam(value="max", defaultValue="200") int max) {
+
+
+        String query = "select ceil(w.wid) as wid, to_char(w.wdate,'yy-mm-dd') as windDate,l.city_name as city,  ceil(h.humidity) as humidity," +
+                "ceil(p.pressure) as pressure, round(t.temperature,2) as temperature, ceil(ws.wind_speed) as windSpeed, wd.description as windDesc " +
+                "from Location l left outer join Weather w on w.location_Id = l.location_Id left outer join Humidity h on w.wid =h.wid " +
+                "left outer join Pressure p on w.wid =p.wid left outer join Temperature t on w.wid =t.wid  left outer join Weather_Description wd " +
+                "on w.wid = wd.wid left outer join Wind_Speed ws on w.wid = ws.wid where l.city_name = ?1 and t.temperature > ?2 and t.temperature < ?3";
+
+        return entityManager.createNativeQuery(query, WeatherInfo.class).setParameter(1,city).setParameter(2,min).setParameter(3,max).getResultList();
+
+    }
+
+
+
 
 
 }

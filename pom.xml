@@ -62,7 +62,7 @@
 
     <repositories>
         <repository>
-            <wid>spring-libs-release</wid>
+            <id>spring-libs-release</id>
             <name>Spring Releases</name>
             <url>https://repo.spring.io/libs-release</url>
             <snapshots>
