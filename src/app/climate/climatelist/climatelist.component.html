@@ -1,19 +1,28 @@
+<p>start from:{{startdate}} to {{enddate}}</p>
+
+
+<button class="btn btn-primary" (click)="onshow()">Show</button>
+<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
 <div class="example-container mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource">
-    <ng-container matColumnDef="Wid">
-      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.Wid}} </mat-cell>
+  <mat-table #table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> date </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="desc">
-      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> desc </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.desc}} </mat-cell>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="temperature">
-      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> temperature </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.temperature}} </mat-cell>
     </ng-container>
 
@@ -23,7 +32,16 @@
 
   <mat-paginator #paginator
                  [pageSize]="10"
-                 [pageSizeOptions]="[5, 10, 20]"
+                 [pageSizeOptions]="[5, 10, 15]"
                  [showFirstLastButtons]="true">
   </mat-paginator>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <ul class="list-group" *ngFor="let server of ELEMENT_DATA">
+        <li class="list-group-item">{{ server.date }} (ID: {{ server.desc }})</li>
+      </ul>
+    </div>
+  </div>
 </div>

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {RouterService} from '../router.service';
 
 @Component({
   selector: 'app-header',
@@ -8,12 +7,9 @@ import {RouterService} from '../router.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private rservice: RouterService) { }
+  constructor() { }
 
   ngOnInit() {
   }
-  switch(input: string) {
-    this.rservice.updatatargetpage(input);
-    this.rservice.pagechanged.emit();
-  }
+
 }

@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {RouterService} from './router.service';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +8,10 @@ import {RouterService} from './router.service';
 export class AppComponent implements OnInit {
   page: string ;
 
-  constructor(private rservice: RouterService) {
+  constructor() {
   }
   ngOnInit() {
-    this.page = this.rservice.targetpage;
-    this.rservice.pagechanged
-      .subscribe(
-        () => {this.page = this.rservice.targetpage; }
-      );
+
   }
 
 

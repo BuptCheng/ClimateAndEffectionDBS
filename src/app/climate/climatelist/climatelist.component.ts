@@ -1,6 +1,8 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Welement} from '../welement.model';
-import {MatPaginator, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {PostandgetService} from '../../shared/postandget.service';
+import {SearchfilterService} from '../../shared/searchfilter.service';
 
 @Component({
   selector: 'app-climatelist',
@@ -8,74 +10,43 @@ import {MatPaginator, MatTableDataSource} from '@angular/material';
   styleUrls: ['./climatelist.component.css']
 })
 export class ClimatelistComponent implements OnInit,  AfterViewInit {
-
-  displayedColumns = ['Wid', 'desc', 'temperature'];
-  dataSource = new MatTableDataSource<Welement>();
+  startdate:string ;
+  enddate: string ;
+  displayedColumns = ['date', 'desc', 'temperature'];
+  dataSource: MatTableDataSource<Welement> = new MatTableDataSource<Welement>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  constructor(private pgservice: PostandgetService,
+              private cdservice: SearchfilterService){
+  }
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
   ngOnInit() {
- //   this.dataSource.paginator = this.paginator;
-    // ELEMENT_DATA
+    this.onGet();
+    this.startdate = this.cdservice.startdate;
+    this.enddate = this.cdservice.enddate;
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  onGet(){
+    this.pgservice.getData()
+      .subscribe(
+        (ELEMENT: Welement[]) => this.dataSource.data = ELEMENT,
+        (error) => console.log(error)
+      );
+  }
+  onshow() {
+    this.dataSource = new MatTableDataSource<Welement>(this.pgservice.CUR_ELEMENT_DATA);
   }
 }
-
-
-const ELEMENT_DATA: Welement[] = [
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 2, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 3, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 4, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 5, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 6, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 7, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 8, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 9, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 10, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 11, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 12, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 13, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-  {Wid: 1, desc: 'Hydrogen', temperature: 1.0079},
-];
+export interface element{
+  date:string;
+  desc:string;
+  temperature:number;
+}

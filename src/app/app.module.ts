@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import {RouterService} from './router.service';
 import {FormsModule} from '@angular/forms';
 import { QueryComponent } from './query/query.component';
 import { QuerylistComponent } from './query/querylist/querylist.component';
@@ -27,16 +26,29 @@ import {
   MatListModule,
   MatTooltipModule,
   MatRadioModule,
+  MatSortModule,
+  MatNativeDateModule,
 } from '@angular/material';
+import {MatDatepickerModule,} from '@angular/material/datepicker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ClimateComponent } from './climate/climate.component';
 import { FlightComponent } from './flight/flight.component';
 import { ClimatelistComponent } from './climate/climatelist/climatelist.component';
-import { ClimatedetailComponent } from './climate/climatedetail/climatedetail.component';
 import { FlightlistComponent } from './flight/flightlist/flightlist.component';
 import { FlightdetailComponent } from './flight/flightdetail/flightdetail.component';
+import {RouterModule, Routes} from '@angular/router';
+import {HttpModule} from '@angular/http';
+import {PostandgetService} from './shared/postandget.service';
+import {SearchfilterService} from './shared/searchfilter.service';
+
+const appRoutes: Routes = [
+  { path: 'climatestart', component: ClimateComponent} ,
+  { path: 'climatestart/list', component: ClimatelistComponent } ,
+  { path: 'flight', component: FlightComponent } ,
+  { path: 'query', component: QueryComponent } ,
+];
 
 
 @NgModule({
@@ -49,9 +61,8 @@ import { FlightdetailComponent } from './flight/flightdetail/flightdetail.compon
     ClimateComponent,
     FlightComponent,
     ClimatelistComponent,
-    ClimatedetailComponent,
     FlightlistComponent,
-    FlightdetailComponent
+    FlightdetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,11 +84,16 @@ import { FlightdetailComponent } from './flight/flightdetail/flightdetail.compon
     MatRadioModule,
     MatTableModule,
     MatSelectModule,
+    MatSortModule,
     MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     NoopAnimationsModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot(appRoutes) ,
+    HttpModule,
   ],
-  providers: [RouterService],
+  providers: [PostandgetService,SearchfilterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
