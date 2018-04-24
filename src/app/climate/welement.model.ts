@@ -1,7 +1,14 @@
 export class Welement {
-  date: String;
-  desc: string;
+  locationID: number;
+  date: string;
+  city: string;
+  latitude: number;
+  longitude:number;
   temperature: number;
+  humidity: number;
+  pressure: number;
+  windspeed: number;
+  desc: string;
   constructor(  date: string,
   temperature: number){
     const descs:string[] = ['Vancouver','Portland','San Francisco',

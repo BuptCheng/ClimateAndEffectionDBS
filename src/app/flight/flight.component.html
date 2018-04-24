@@ -1,24 +1,39 @@
 <mat-form-field>
   <input matInput [matDatepicker]="picker1" placeholder="Choose a start date"
-         (dateInput)="addstartdate($event)"
+         [(ngModel)]="startdate" (dateInput)="startdate = $event.value();"
   >
   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
   <mat-datepicker #picker1></mat-datepicker>
 </mat-form-field>
-<br>
 <mat-form-field>
   <input matInput [matDatepicker]="picker2" placeholder="Choose a end date"
-         (dateInput)="addenddate($event)"
+         [(ngModel)]="enddate"  (dateInput)="enddate = $event.value();"
   >
   <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
   <mat-datepicker #picker2></mat-datepicker>
 </mat-form-field>
-<div class="container">
-  <div class="row">
-    <div class="col-md-4">Start date:{{startdate}}</div>
-    <div class="col-md-4">End date:{{enddate}}</div>
+<form>
+  <mat-form-field>
+    <mat-select placeholder="Select Location" [(ngModel)]="city" name="food">
+      <mat-option *ngFor="let food of foods" [value]="food">
+        {{food}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="container">
+    <div class="row">
+      <p>Start date: {{startdate}}</p>
+      <p>End date: {{enddate}}</p>
+      <p> Selected value: {{city}} </p>
+    </div>
   </div>
-</div>
+</form>
+<button class="btn btn-primary"
+        [routerLink]="'list'"
+        (click)="onsubmit()"
+>Submit</button>
+
 
 <button class="btn btn-primary"
         [routerLink]="'list'"

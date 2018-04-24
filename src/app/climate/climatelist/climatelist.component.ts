@@ -12,7 +12,8 @@ import {SearchfilterService} from '../../shared/searchfilter.service';
 export class ClimatelistComponent implements OnInit,  AfterViewInit {
   startdate:string ;
   enddate: string ;
-  displayedColumns = ['date', 'desc', 'temperature'];
+  city:string;
+  displayedColumns = [];
   dataSource: MatTableDataSource<Welement> = new MatTableDataSource<Welement>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -35,18 +36,32 @@ export class ClimatelistComponent implements OnInit,  AfterViewInit {
   }
 
   onGet(){
-    this.pgservice.getData()
+    this.pgservice.getDatafromdatabase('locationId')
       .subscribe(
-        (ELEMENT: Welement[]) => this.dataSource.data = ELEMENT,
+        (ELEMENT: Welement[]) => {this.dataSource.data = ELEMENT,
+        this.addcolumns(ELEMENT[0])},
         (error) => console.log(error)
       );
   }
-  onshow() {
-    this.dataSource = new MatTableDataSource<Welement>(this.pgservice.CUR_ELEMENT_DATA);
+  addcolumns(input : Welement){
+    this.displayedColumns = [];
+    if(input.locationID != null)this.displayedColumns.push('locationID');
+    if(input.date != null)this.displayedColumns.push('date');
+    if(input.city != null)this.displayedColumns.push('city');
+    if(input.latitude != null)this.displayedColumns.push('latitude');
+    if(input.longitude != null)this.displayedColumns.push('longitude');
+    if(input.temperature != null)this.displayedColumns.push('temperature');
+    if(input.humidity != null)this.displayedColumns.push('humidity');
+    if(input.pressure != null)this.displayedColumns.push('pressure');
+    if(input.windspeed != null)this.displayedColumns.push('windspeed');
+    if(input.desc != null)this.displayedColumns.push('desc');
   }
-}
-export interface element{
-  date:string;
-  desc:string;
-  temperature:number;
+  onshow() {
+    this.pgservice.getData()
+      .subscribe(
+        (ELEMENT: Welement[]) => {this.dataSource.data = ELEMENT,
+        this.addcolumns(ELEMENT[0])},
+        (error) => console.log(error)
+      );
+  }
 }
