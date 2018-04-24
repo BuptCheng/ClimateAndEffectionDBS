@@ -9,7 +9,7 @@ import java.util.List;
 public interface LocationRepository extends CrudRepository<Location, Integer> {
 
 
-    List<Location> findBycityName(@RequestParam(defaultValue="Gainesville")String city_name);
+    List<Location> findBycity(@RequestParam(defaultValue="Gainesville")String city_name);
     List<Location> findBylocationId(@RequestParam(defaultValue= "27")int locationId);
 
 

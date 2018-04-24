@@ -10,7 +10,7 @@ public class Location {
     @Column(name="LOCATION_ID")
     private int locationId;
     @Column(name = "city_name")
-    private String cityName;
+    private String city;
     @Column(name="latitude")
     private float latitude;
     @Column(name="longitude")
@@ -21,7 +21,7 @@ public class Location {
 
     public Location(int location_id, String cityname, float latitude, float longtitude) {
         this.locationId = location_id;
-        this.cityName = cityname;
+        this.city = cityname;
         this.latitude = latitude;
         this.longitude = longtitude;
     }
@@ -34,12 +34,12 @@ public class Location {
         this.locationId = locationId;
     }
 
-    public String getCityName() {
-        return cityName;
+    public String getCity() {
+        return city;
     }
 
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public float getLatitude() {
