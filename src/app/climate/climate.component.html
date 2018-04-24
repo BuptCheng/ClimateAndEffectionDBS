@@ -1,35 +1,42 @@
+<div class = "container" fxLayoutAlign="center center" fxLayout.sm="column" fxLayout.xs="column"
+     fxLayoutAlign.xs="center center" fxLayoutAlign.sm="center center"
+     fxLayoutAlign.gt-sm="center center" fxFlexAlign="center center"
+     style="height:50em;margin-left:-0.02em;margin-top:-0.1em">
+  <form>
 <mat-form-field>
-  <input matInput [matDatepicker]="picker1" placeholder="Choose a start date"
-         [(ngModel)]="startdate" (dateInput)="startdate = $event.value();"
+  <input matInput [matDatepickerFilter]="startFilter" [matDatepicker]="picker1" placeholder="Choose a start date"
+         [value]="startdate" (dateInput)="startdate = $event.value"
   >
   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
   <mat-datepicker #picker1></mat-datepicker>
 </mat-form-field>
 <mat-form-field>
-  <input matInput [matDatepicker]="picker2" placeholder="Choose a end date"
-         [(ngModel)]="enddate"  (dateInput)="enddate = $event.value();"
+  <input matInput [matDatepickerFilter]="endFilter" [matDatepicker]="picker2" placeholder="Choose a end date"
+         [value]="enddate"  (dateInput)="enddate = $event.value"
   >
   <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
   <mat-datepicker #picker2></mat-datepicker>
 </mat-form-field>
-<form>
+
   <mat-form-field>
     <mat-select placeholder="Select Location" [(ngModel)]="city" name="city">
       <mat-option *ngFor="let city of cities" [value]="city">
         {{city}}
       </mat-option>
     </mat-select>
+    <!--<input type="text" placeholder="Assignee" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto">-->
+    <!--<mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">-->
+      <!--<mat-option *ngFor="let option of cities | async" [value]="option">-->
+        <!--{{ cities.name }}-->
+      <!--</mat-option>-->
+    <!--</mat-autocomplete>-->
   </mat-form-field>
+    <br>
+    <button mat-button color="primary" type="submit" class="search" [routerLink]="'list'"
+            (click)="onsubmit()">Search</button>
+    &nbsp;  &nbsp; &nbsp;
+    <button mat-button color="primary" type="button" class="reset"
+    (click)="onreset()">Reset</button>
+  </form>
+</div>
 
-  <div class="container">
-    <div class="row">
-      <p>Start date: {{startdate}}</p>
-      <p>End date: {{enddate}}</p>
-      <p> Selected value: {{city}} </p>
-    </div>
-  </div>
-</form>
-<button class="btn btn-primary"
-        [routerLink]="'list'"
-        (click)="onsubmit()"
->Submit</button>

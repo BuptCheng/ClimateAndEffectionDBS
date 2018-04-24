@@ -1,0 +1,37 @@
+<div class = "container" fxLayoutAlign="center center" fxLayout.sm="column" fxLayout.xs="column"
+fxLayoutAlign.xs="center center" fxLayoutAlign.sm="center center"
+fxLayoutAlign.gt-sm="center center" fxFlexAlign="center center"
+style="height: 50em;margin-left:-0.02em;margin-top:-0.1em">
+  <br><br>
+<div *ngIf = "notsigned" >
+  <mat-toolbar color="accent" theme="light">
+    <mat-toolbar-row>
+      <span>Sign In</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-card>
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="UserName" type="text" id="username" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Password" type="text" id="password" required>
+        </mat-form-field>
+
+        <div style="text-align:center;">
+          <button mat-button color="primary" type="submit" class="sign in" (click)="statecheck(notsigned)">Sign In</button>
+          <button mat-button color="primary" type="button" class="sign up" routerLink="/signup" >Sign Up</button>
+        </div>
+
+    </form>
+  </mat-card>
+</div>
+
+<div *ngIf="signed">
+    <p>
+        Let's start a new journey with statistical weather data and fights' review!
+    </p>
+</div>
+
+</div>

@@ -4,10 +4,9 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import {FormsModule} from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { QueryComponent } from './query/query.component';
 import { QuerylistComponent } from './query/querylist/querylist.component';
-import { HomepageComponent } from './homepage/homepage.component';
 import {
   MatButtonModule,
   MatCardModule,
@@ -29,6 +28,7 @@ import {
   MatSortModule,
   MatNativeDateModule,
 } from '@angular/material';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDatepickerModule,} from '@angular/material/datepicker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,13 +41,18 @@ import {RouterModule, Routes} from '@angular/router';
 import {HttpModule} from '@angular/http';
 import {PostandgetService} from './shared/postandget.service';
 import {SearchfilterService} from './shared/searchfilter.service';
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
+import {WeatherAndFlightComponent} from './weather-and-flight/weather-and-flight.component';
 
 const appRoutes: Routes = [
-  { path: 'climatestart', component: ClimateComponent} ,
-  { path: 'climatestart/list', component: ClimatelistComponent } ,
+  { path: '', component: SigninComponent} ,
+  { path: 'climate', component: ClimateComponent} ,
+  { path: 'climate/list', component: ClimatelistComponent } ,
   { path: 'flight', component: FlightComponent } ,
   { path: 'flight/list', component: FlightlistComponent } ,
   { path: 'query', component: QueryComponent } ,
+  { path: 'WeatherAndFlight', component: WeatherAndFlightComponent } ,
 ];
 
 
@@ -57,14 +62,17 @@ const appRoutes: Routes = [
     HeaderComponent,
     QueryComponent,
     QuerylistComponent,
-    HomepageComponent,
     ClimateComponent,
     FlightComponent,
     ClimatelistComponent,
     FlightlistComponent,
+    SigninComponent,
+    SignupComponent,
+    WeatherAndFlightComponent,
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     FormsModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -86,6 +94,7 @@ const appRoutes: Routes = [
     MatSortModule,
     MatPaginatorModule,
     MatDatepickerModule,
+    MatAutocompleteModule,
     MatNativeDateModule,
     NoopAnimationsModule,
     BrowserAnimationsModule,

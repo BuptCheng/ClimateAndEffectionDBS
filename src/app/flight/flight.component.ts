@@ -9,17 +9,23 @@ import {SearchfilterService} from '../shared/searchfilter.service';
   styleUrls: ['./flight.component.css']
 })
 export class FlightComponent implements OnInit {
-  startdate = new Date(2015,0, 1) ;
-  enddate  = new Date(2015,1, 1) ;
-  city: string = ;
+  startdestination:string = 'MCO';
+  enddestination:string ='SJC';
+  date = new Date(2012,0, 1) ;
   constructor(private pgservice: PostandgetService ,
               private sfservice: SearchfilterService) { }
   onsubmit(){
-    this.sfservice.startdate = this.startdate.toLocaleDateString();
-    this.sfservice.enddate = this.enddate.toLocaleDateString();
-    this.sfservice.city = this.city;
+  this.sfservice.startlocation = this.startdestination;
+  this.sfservice.destinationlocation = this.enddestination;
+  this.sfservice.flightdate = this.date.toDateString();
+  console.log(this.date.toDateString());
   }
 
+  onreset(){
+    this.startdestination = '';
+    this.enddestination = '';
+    this.date = null;
+  }
   ngOnInit() {
   }
 

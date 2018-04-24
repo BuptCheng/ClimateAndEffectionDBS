@@ -1,0 +1,36 @@
+mat-toolbar{
+    width: 400px;
+    margin: 0 auto;
+    color: prime;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 24px;
+}
+
+mat-card{
+
+    min-height: auto;
+    width: 400px;
+    margin: 0 auto;
+}
+
+.mat-form-field{
+    display: flex;
+    flex-direction: column;
+}
+
+p{
+    position: fixed;
+    top:30%;
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    text-align: center;
+}
+.container {
+    background-image: url('/assets/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    top: 0;
+    width: 100%;
+
+}

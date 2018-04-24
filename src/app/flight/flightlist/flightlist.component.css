@@ -1,17 +1,16 @@
-.example-container {
-  display: flex;
-  flex-direction: column;
-  min-width: 300px;
+.container {
+  background-image: url('/assets/HPbg.jpeg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  top: 0;
+  width: 100%;
+
+}
+form{
+  position: relative;
+  top : 15%;
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
 }
 
-.mat-table {
-  overflow: auto;
-  max-height: 650px;
-}
-.mat-table-cell.mat-sort-header-sorted{
-  color: black;
-}
-.mat-form-field{
-  font-size: 15px;
-  width: 100%;
-}
