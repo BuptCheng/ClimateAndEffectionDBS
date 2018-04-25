@@ -124,8 +124,9 @@ public class QueryService {
     }
 
 
-    public List<Pair<String, Double>> findDelayReason(String airport, String date){
+    public List<Pair<String, Double>> findDelayReason(String airportCode, String date){
         // pre process the date
+        String airport = this.findAirportByCode(airportCode);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date d = new Date();
         try {
@@ -147,8 +148,18 @@ public class QueryService {
                 }
             }
         }
-
         return res;
     }
 
+    public String findBusiestAirport(String date){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date d = new Date();
+        try {
+            d = format.parse(date);
+        } catch (ParseException e) {
+            System.out.println(e);
+        }
+
+        return null;
+    }
 }

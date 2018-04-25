@@ -24,4 +24,6 @@ public interface FlightQueryRepository extends CrudRepository<FlightTime, Flight
             "where f.flightTimeId.originAirport = ?1 and f.flightTimeId.date = ?2 group by f.flightTimeId.airline")
     List<Object[]> findAllFlightByAirport(String airport, Date date);
 
+    @Query("select f.flightTimeId.originAirport, count(f) from FlightTime f where f.flightTimeId.date = ?1 group by f.flightTimeId.originAirport")
+    List<Object[]> findMostFlight(Date date);
 }
