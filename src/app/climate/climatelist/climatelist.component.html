@@ -18,6 +18,11 @@
       <mat-cell *matCellDef="let element"> {{element.date}}</mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="winddate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> date </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.date}}</mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="city">
       <mat-header-cell *matHeaderCellDef mat-sort-header> city </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.city}} </mat-cell>

@@ -7,8 +7,8 @@ export class Welement {
   temperature: number;
   humidity: number;
   pressure: number;
-  windspeed: number;
-  desc: string;
+  windSpeed: number;
+  windDesc: string;
   constructor(  date: string,
   temperature: number){
     const descs:string[] = ['Vancouver','Portland','San Francisco',

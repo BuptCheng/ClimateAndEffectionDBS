@@ -28,8 +28,8 @@ export class ClimateComponent implements OnInit {
   private sfservice: SearchfilterService) { }
 
   onsubmit(){
-    this.sfservice.startdate = this.startdate.toLocaleDateString();
-    this.sfservice.enddate = this.enddate.toLocaleDateString();
+    this.sfservice.startdate = this.startdate;
+    this.sfservice.enddate = this.enddate;
     this.sfservice.city = this.city;
   }
   onreset(){
@@ -38,6 +38,7 @@ export class ClimateComponent implements OnInit {
     this.city = '';
   }
   autocheck(){
+    //console.log(this.enddate.toDateString()+this.startdate.toDateString()+this.city);
     return this.enddate===null||this.startdate===null||this.city==='';
   }
   ngOnInit() {

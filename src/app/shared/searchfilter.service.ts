@@ -1,8 +1,8 @@
 export class SearchfilterService {
   city:string
-  startdate:string;
-  enddate:string;
+  startdate:Date;
+  enddate:Date;
   startlocation:string;
   destinationlocation:string;
-  flightdate:string;
+  flightdate:Date;
 }

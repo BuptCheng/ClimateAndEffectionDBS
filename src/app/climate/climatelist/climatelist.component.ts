@@ -26,20 +26,24 @@ export class ClimatelistComponent implements OnInit,  AfterViewInit {
     this.dataSource.filter = filterValue;
   }
   ngOnInit() {
-    this.onGet();
-    this.startdate = this.sfservice.startdate;
-    this.enddate = this.sfservice.enddate;
-    this.city = this.sfservice.city;
+    console.log(this.enddate+this.startdate+this.city);
   }
   ngAfterViewInit() {
+   // this.startdate = this.sfservice.startdate;
+   // this.enddate = this.sfservice.enddate;
+    this.city = this.sfservice.city;
+    this.onGet();
+    console.log(this.enddate+this.startdate+this.city);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
   onGet(){
-    const start = 'datestart='+this.sfservice.startdate;
-    const end = 'dateend='+ this.sfservice.enddate;
-    const city = 'city=' + this.city;
+    const start = 'datestart='+this.sfservice.startdate.getFullYear()
+    +'-'+(this.sfservice.startdate.getMonth()+1)+'-'+this.sfservice.startdate.getDay();
+    const end = 'dateend='+this.sfservice.enddate.getFullYear()
+    +'-'+(this.sfservice.enddate.getMonth()+1)+'-'+this.sfservice.enddate.getDay();
+    const city = 'city=' + this.sfservice.city;
     this.pgservice.getDatafromdatabase('daterangeandcity?'+start+'&'+end+'&'+city)
       .subscribe(
         (ELEMENT: Welement[]) => {this.dataSource.data = ELEMENT,
