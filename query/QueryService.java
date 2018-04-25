@@ -124,9 +124,9 @@ public class QueryService {
     }
 
 
-    public List<Pair<String, Double>> findDelayReason(String airportCode, String date){
+    public List<Pair<String, Double>> findDelayReason(String airportName, String date){
         // pre process the date
-        String airport = this.findAirportByCode(airportCode);
+        String airport = queryRepository.findCodeByAirport(airportName);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date d = new Date();
         try {
