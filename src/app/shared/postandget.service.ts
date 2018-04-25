@@ -3,11 +3,12 @@ import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/Rx';
 import {Welement} from '../climate/welement.model';
 import {MatTableDataSource} from '@angular/material';
+import {Felement} from '../flight/felement.model';
 
 @Injectable()
 export  class PostandgetService {
   myurl = 'https://angularpractice-3696c.firebaseio.com/';
-  oracleurl: string = 'http://localhost:8080/weather/';
+  oracleurl: string = 'http://localhost:8080/';
   constructor(private http: Http) {}
   storeServers(data: any[]) {
     const headers =new Headers({'Access-Control-Allow-Origin':'*'} );
@@ -19,10 +20,10 @@ export  class PostandgetService {
       data,
       {headers: headers});
   }
-  getDatafromdatabase(condition:string) {
+  getWeatherDatafromdatabase(condition:string) {
     const headers =new Headers({'Access-Control-Allow-Origin':'*',
       'content-type':'application/json'} );
-    return this.http.get(this.oracleurl+condition ,{headers: headers})
+    return this.http.get(this.oracleurl+'weather/'+condition ,{headers: headers})
       .map(
         (response: Response) => {
           const data:Welement[] = response.json();
@@ -31,12 +32,25 @@ export  class PostandgetService {
         }
       );
   }
-  getData() {
-
-    return this.http.get(this.myurl + 'data.json')
+  getFlightDatafromdatabase(condition:string) {
+    const headers =new Headers({'Access-Control-Allow-Origin':'*',
+      'content-type':'application/json'} );
+    return this.http.get(this.oracleurl+condition ,{headers: headers})
       .map(
         (response: Response) => {
-          const data:Welement[] = response.json();
+          const data:Felement[] = response.json();
+          console.log(data);
+          return data;
+        }
+      );
+  }
+  getFcodeDatafromdatabase(condition:string) {
+    const headers =new Headers({'Access-Control-Allow-Origin':'*',
+      'content-type':'application/json'} );
+    return this.http.get(this.oracleurl+condition ,{headers: headers})
+      .map(
+        (response: Response) => {
+          const data:string = response.json();
           console.log(data);
           return data;
         }

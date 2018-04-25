@@ -44,7 +44,7 @@ export class ClimatelistComponent implements OnInit,  AfterViewInit {
     const end = 'dateend='+this.sfservice.enddate.getFullYear()
     +'-'+(this.sfservice.enddate.getMonth()+1)+'-'+this.sfservice.enddate.getDay();
     const city = 'city=' + this.sfservice.city;
-    this.pgservice.getDatafromdatabase('daterangeandcity?'+start+'&'+end+'&'+city)
+    this.pgservice.getWeatherDatafromdatabase('daterangeandcity?'+start+'&'+end+'&'+city)
       .subscribe(
         (ELEMENT: Welement[]) => {this.dataSource.data = ELEMENT,
         this.addcolumns(ELEMENT[0])},
@@ -61,15 +61,7 @@ export class ClimatelistComponent implements OnInit,  AfterViewInit {
     if(input.temperature != null)this.displayedColumns.push('temperature');
     if(input.humidity != null)this.displayedColumns.push('humidity');
     if(input.pressure != null)this.displayedColumns.push('pressure');
-    if(input.windspeed != null)this.displayedColumns.push('windspeed');
-    if(input.desc != null)this.displayedColumns.push('desc');
-  }
-  onshow() {
-    this.pgservice.getData()
-      .subscribe(
-        (ELEMENT: Welement[]) => {this.dataSource.data = ELEMENT,
-        this.addcolumns(ELEMENT[0])},
-        (error) => console.log(error)
-      );
+    if(input.windSpeed != null)this.displayedColumns.push('windspeed');
+    if(input.windDesc != null)this.displayedColumns.push('desc');
   }
 }

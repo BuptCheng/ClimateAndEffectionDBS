@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDatepickerInputEvent} from '@angular/material';
 import {PostandgetService} from '../shared/postandget.service';
 import {SearchfilterService} from '../shared/searchfilter.service';
+import {Felement} from './felement.model';
 
 @Component({
   selector: 'app-flight',
@@ -19,10 +20,24 @@ export class FlightComponent implements OnInit {
     return year === 2012;
   };
   onsubmit(){
-  this.sfservice.startlocation = this.startdestination;
-  this.sfservice.destinationlocation = this.enddestination;
-  this.sfservice.flightdate = this.date.toDateString();
-  console.log(this.date.toDateString());
+    this.getAirportcode();
+
+    this.sfservice.flightdate = this.date;
+    console.log(this.date.toDateString());
+  }
+  getAirportcode(){
+    this.pgservice.getFcodeDatafromdatabase('findAirportCode?code='+this.startdestination)
+      .subscribe(
+        (ELEMENT: string) => {this.sfservice.startlocation = ELEMENT,
+          console.log(ELEMENT)},
+        (error) => console.log(error)
+      );
+    this.pgservice.getFcodeDatafromdatabase('findAirportCode?code='+this.enddestination)
+      .subscribe(
+        (ELEMENT: string) => {this.sfservice.startlocation = ELEMENT,
+          console.log(ELEMENT)},
+        (error) => console.log(error)
+      );
   }
   autocheck(){
     return this.startdestination===''||this.enddestination===''||this.date===null;
