@@ -63,8 +63,14 @@ public class QueryController {
         return queryService.findTweet(date1, date2);
     }
 
-    @RequestMapping("insight/queryTweetReason")
-    public List<Pair<String, List<Pair<String, Long>>>> listTweetReason(@RequestParam("d1") String date1, @RequestParam("d2") String date2){
-        return queryService.findTweetReason(date1, date2);
+//    @RequestMapping("insight/queryTweetReason")
+//    public List<Pair<String, List<Pair<String, Long>>>> listTweetReason(@RequestParam("d1") String date1, @RequestParam("d2") String date2){
+//        return queryService.findTweetReason(date1, date2);
+//    }
+
+    //find delay by airlines and reason
+    @RequestMapping("insight/queryDelay")
+    public List<Pair<String,Double>> queryDelayReason(@RequestParam("airport") String airport, @RequestParam("date") String date){
+        return queryService.findDelayReason(airport, date);
     }
 }

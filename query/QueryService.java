@@ -118,27 +118,54 @@ public class QueryService {
         return res;
     }
 
-    public List<Pair<String, List<Pair<String, Long>>>> findTweetReason(String date1, String date2) {
+//    public List<Pair<String, List<Pair<String, Long>>>> findTweetReason(String date1, String date2) {
+////        // pre process the date
+////        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+////        Date d1 = new Date();
+////        Date d2 = new Date();
+////        try {
+////            d1 = format.parse(date1);
+////            d2 = format.parse(date2);
+////        } catch (ParseException e) {
+////            System.out.println(e);
+////        }
+////
+////        List<Pair<String, List<Pair<String, Long>>>> res = new ArrayList<>();
+////        for (Airline a : queryRepository.findAirline()) {
+////            List<Pair<String, Long>> airline = new ArrayList<>();
+////            for (Object[] o : queryRepository.findReasonByAirline(d1, d2, a.getCode())) {
+////                Pair<String, Long> pair = new Pair<>((String) o[0], (Long) o[1]);
+////                airline.add(pair);
+////            }
+////            res.add(new Pair<>(a.getAirline(), airline));
+////        }
+////        return res;
+////    }
+
+    public List<Pair<String, Double>> findDelayReason(String airport, String date){
         // pre process the date
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date d1 = new Date();
-        Date d2 = new Date();
+        Date d = new Date();
         try {
-            d1 = format.parse(date1);
-            d2 = format.parse(date2);
+            d = format.parse(date);
         } catch (ParseException e) {
             System.out.println(e);
         }
-
-        List<Pair<String, List<Pair<String, Long>>>> res = new ArrayList<>();
-        for (Airline a : queryRepository.findAirline()) {
-            List<Pair<String, Long>> airline = new ArrayList<>();
-            for (Object[] o : queryRepository.findReasonByAirline(d1, d2, a.getCode())) {
-                Pair<String, Long> pair = new Pair<>((String) o[0], (Long) o[1]);
-                airline.add(pair);
+        List<Pair<String, Double>> res = new ArrayList();
+        List<Object[]> os = flightQueryRepository.findDelay(airport, d);
+        List<Object[]> all = flightQueryRepository.findAllFlightByAirport(airport, d);
+        for(Object[] o : os){
+            for(Object[] a : all){
+                if((o[0]).equals(a[0])){
+                    int a1 = Math.toIntExact((Long)o[1]);
+                    int a2 = Math.toIntExact((Long)a[1]);
+                    Pair<String, Double> pair = new Pair<>((String)o[0], (1.0 * a1/a2));
+                    res.add(pair);
+                    break;
+                }
             }
-            res.add(new Pair<>(a.getAirline(), airline));
         }
+
         return res;
     }
 
