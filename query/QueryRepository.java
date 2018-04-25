@@ -37,8 +37,8 @@ public interface QueryRepository extends CrudRepository<Flight, String> {
     @Query("select t.sentiment, count(t) from Tweet t where t.dateCreated between ?1 and ?2 and t.airline = ?3 group by t.sentiment")
     List<Object[]> findSentimentByAirline(Date date1, Date date2, String airline);
 
-//    @Query("select t.reason, count(t) from Tweet t where t.dateCreated between ?1 and ?2 and t.airline = ?3 group by t.reason")
-//    List<Object[]> findReasonByAirline(Date date1, Date date2, String airline);
+    @Query("select t.airline, count(t) from Tweet t where t.reason = ?1 group by t.airline")
+    List<Object[]> findCountByReason(String reason);
 
     //flight time
     @Query("select f from FlightTime f where f.flightTimeId.airline = ?1")

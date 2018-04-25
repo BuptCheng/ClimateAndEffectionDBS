@@ -7,10 +7,7 @@ import org.springframework.stereotype.Service;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 @Service
 public class QueryService {
@@ -118,29 +115,14 @@ public class QueryService {
         return res;
     }
 
-//    public List<Pair<String, List<Pair<String, Long>>>> findTweetReason(String date1, String date2) {
-////        // pre process the date
-////        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-////        Date d1 = new Date();
-////        Date d2 = new Date();
-////        try {
-////            d1 = format.parse(date1);
-////            d2 = format.parse(date2);
-////        } catch (ParseException e) {
-////            System.out.println(e);
-////        }
-////
-////        List<Pair<String, List<Pair<String, Long>>>> res = new ArrayList<>();
-////        for (Airline a : queryRepository.findAirline()) {
-////            List<Pair<String, Long>> airline = new ArrayList<>();
-////            for (Object[] o : queryRepository.findReasonByAirline(d1, d2, a.getCode())) {
-////                Pair<String, Long> pair = new Pair<>((String) o[0], (Long) o[1]);
-////                airline.add(pair);
-////            }
-////            res.add(new Pair<>(a.getAirline(), airline));
-////        }
-////        return res;
-////    }
+    public Map<String, Integer> findTweetReason(String reason) {
+        Map<String, Integer> res = new HashMap<>();
+        for(Object[] o : queryRepository.findCountByReason(reason)){
+            res.put((String)o[0], Math.toIntExact((Long)o[1]));
+        }
+        return res;
+    }
+
 
     public List<Pair<String, Double>> findDelayReason(String airport, String date){
         // pre process the date

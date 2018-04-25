@@ -2,13 +2,16 @@ package climate.query;
 
 import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class QueryController {
 
@@ -63,10 +66,10 @@ public class QueryController {
         return queryService.findTweet(date1, date2);
     }
 
-//    @RequestMapping("insight/queryTweetReason")
-//    public List<Pair<String, List<Pair<String, Long>>>> listTweetReason(@RequestParam("d1") String date1, @RequestParam("d2") String date2){
-//        return queryService.findTweetReason(date1, date2);
-//    }
+    @RequestMapping("insight/queryTweetReason")
+    public Map<String, Integer> listTweetReason(@RequestParam("reason") String reason){
+        return queryService.findTweetReason(reason);
+    }
 
     //find delay by airlines and reason
     @RequestMapping("insight/queryDelay")
