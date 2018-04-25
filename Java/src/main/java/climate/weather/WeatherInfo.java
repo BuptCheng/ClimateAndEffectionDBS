@@ -39,6 +39,25 @@ public class WeatherInfo {
         this.city = city;
         this.date = date;
     }
+
+    public WeatherInfo(String city, BigDecimal humidity, BigDecimal pressure, BigDecimal temperature, BigDecimal windSpeed) {
+        this.city = city;
+        this.humidity = humidity;
+        this.pressure = pressure;
+        this.temperature = temperature;
+        this.windSpeed = windSpeed;
+    }
+
+    public WeatherInfo(String date, String city, BigDecimal humidity, BigDecimal pressure, BigDecimal temperature, BigDecimal windSpeed) {
+
+        this.date = date;
+        this.city = city;
+        this.humidity = humidity;
+        this.pressure = pressure;
+        this.temperature = temperature;
+        this.windSpeed = windSpeed;
+    }
+
     public WeatherInfo(long wid, String date, String city, BigDecimal humidity, BigDecimal pressure, BigDecimal temperature, BigDecimal windSpeed, String windDesc) {
         this.wid = wid;
         this.date = date;
