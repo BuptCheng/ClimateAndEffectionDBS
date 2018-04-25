@@ -10,9 +10,9 @@ import {Felement} from './felement.model';
   styleUrls: ['./flight.component.css']
 })
 export class FlightComponent implements OnInit {
-  startdestination:string = 'MCO';
-  enddestination:string ='SJC';
-  date = new Date(2012,0, 1) ;
+  startdestination:string = 'ANC';
+  enddestination:string ='SEA';
+  date = new Date(2015,0, 1) ;
   constructor(private pgservice: PostandgetService ,
               private sfservice: SearchfilterService) { }
   dateFilter = (d: Date): boolean => {
@@ -21,11 +21,10 @@ export class FlightComponent implements OnInit {
   };
   onsubmit(){
     this.getAirportcode();
-
     this.sfservice.flightdate = this.date;
-    console.log(this.date.toDateString());
   }
   getAirportcode(){
+    console.log(this.startdestination+this.enddestination);
     this.pgservice.getFcodeDatafromdatabase('findAirportCode?code='+this.startdestination)
       .subscribe(
         (ELEMENT: string) => {this.sfservice.startlocation = ELEMENT,
@@ -34,7 +33,7 @@ export class FlightComponent implements OnInit {
       );
     this.pgservice.getFcodeDatafromdatabase('findAirportCode?code='+this.enddestination)
       .subscribe(
-        (ELEMENT: string) => {this.sfservice.startlocation = ELEMENT,
+        (ELEMENT: string) => {this.sfservice.destinationlocation = ELEMENT,
           console.log(ELEMENT)},
         (error) => console.log(error)
       );
@@ -42,12 +41,29 @@ export class FlightComponent implements OnInit {
   autocheck(){
     return this.startdestination===''||this.enddestination===''||this.date===null;
   }
+  changestartinput(){
+    this.pgservice.getFcodeDatafromdatabase('findAirportCode?code='+this.startdestination)
+      .subscribe(
+        (ELEMENT: string) => {this.sfservice.startlocation = ELEMENT,
+          console.log(ELEMENT)},
+        (error) => console.log(error)
+      );
+  }
+  changeendinput(){
+    this.pgservice.getFcodeDatafromdatabase('findAirportCode?code='+this.enddestination)
+      .subscribe(
+        (ELEMENT: string) => {this.sfservice.destinationlocation = ELEMENT,
+          console.log(ELEMENT)},
+        (error) => console.log(error)
+      );
+  }
   onreset(){
     this.startdestination = '';
     this.enddestination = '';
     this.date = null;
   }
   ngOnInit() {
+    this.getAirportcode();
   }
 
 }

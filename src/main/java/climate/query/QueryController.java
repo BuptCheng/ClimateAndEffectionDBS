@@ -2,6 +2,7 @@ package climate.query;
 
 import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,12 +10,23 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class QueryController {
 
     @Autowired
     private QueryService queryService;
+    /**
+     * util queries
+     */
+    @RequestMapping("/findAirportCode")
+    public String findAirportCode(@RequestParam("code") String code){
+        return queryService.findAirportByCode(code);
+    }
 
+    /**
+     * basic queries
+     */
     @RequestMapping("/listFlightOriDest")
     public List<Flight> listFlight(@RequestParam("ori") String origin, @RequestParam("dest") String dest){
         return queryService.findFlight(origin, dest);
@@ -53,8 +65,14 @@ public class QueryController {
         return queryService.findTweet(date1, date2);
     }
 
-    @RequestMapping("insight/queryTweetReason")
-    public List<Pair<String, List<Pair<String, Long>>>> listTweetReason(@RequestParam("d1") String date1, @RequestParam("d2") String date2){
-        return queryService.findTweetReason(date1, date2);
+//    @RequestMapping("insight/queryTweetReason")
+//    public List<Pair<String, List<Pair<String, Long>>>> listTweetReason(@RequestParam("d1") String date1, @RequestParam("d2") String date2){
+//        return queryService.findTweetReason(date1, date2);
+//    }
+
+    //find delay by airlines and reason
+    @RequestMapping("insight/queryDelay")
+    public List<Pair<String,Double>> queryDelayReason(@RequestParam("airport") String airport, @RequestParam("date") String date){
+        return queryService.findDelayReason(airport, date);
     }
 }

@@ -11,12 +11,12 @@
 
     <ng-container matColumnDef="date">
       <mat-header-cell *matHeaderCellDef mat-sort-header> date </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.flightId.date}}</mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.flightId.date.substr(0,10)}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="airlineNumber">
       <mat-header-cell *matHeaderCellDef mat-sort-header> airlineNumber </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.flightId.airline.code}}+{{element.flightId.flightNum}}</mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.flightId.airline.code}}{{element.flightId.flightNum}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="originAirport">

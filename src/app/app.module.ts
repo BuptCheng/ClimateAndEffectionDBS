@@ -44,17 +44,34 @@ import {SearchfilterService} from './shared/searchfilter.service';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import {WeatherAndFlightComponent} from './weather-and-flight/weather-and-flight.component';
+import * as FusionCharts from 'fusioncharts';
+import * as Charts from 'fusioncharts/fusioncharts.charts';
+import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
+import { FusionChartsModule } from 'angular4-fusioncharts';
+import { DeleteUserComponent } from './delete-user/delete-user.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { WeatherAndFlightResultComponent } from './weather-and-flight-result/weather-and-flight-result.component';
+import { CustomerReviewAnalysisComponent } from './customer-review-analysis/customer-review-analysis.component';
+import {DataService} from './data.service';
+
 
 const appRoutes: Routes = [
   { path: '', component: SigninComponent} ,
+  { path: 'signup', component: SignupComponent} ,
   { path: 'climate', component: ClimateComponent} ,
   { path: 'climate/list', component: ClimatelistComponent } ,
   { path: 'flight', component: FlightComponent } ,
   { path: 'flight/list', component: FlightlistComponent } ,
   { path: 'query', component: QueryComponent } ,
   { path: 'WeatherAndFlight', component: WeatherAndFlightComponent } ,
+  { path: 'delayanalysis', component: WeatherAndFlightComponent },
+  { path: 'resetpassword', component: ResetpasswordComponent },
+  { path: 'deleteaccount', component: DeleteUserComponent },
+  { path: 'WeatherAndFlightResult/:airport/:month/:day/:year', component: WeatherAndFlightResultComponent },
+  { path: 'CustomerReviewAnalysis', component: CustomerReviewAnalysisComponent },
 ];
 
+FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
 
 @NgModule({
   declarations: [
@@ -69,6 +86,10 @@ const appRoutes: Routes = [
     SigninComponent,
     SignupComponent,
     WeatherAndFlightComponent,
+    DeleteUserComponent,
+    ResetpasswordComponent,
+    WeatherAndFlightResultComponent,
+    CustomerReviewAnalysisComponent,
   ],
   imports: [
     BrowserModule,
@@ -99,9 +120,10 @@ const appRoutes: Routes = [
     NoopAnimationsModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes) ,
+    FusionChartsModule,
     HttpModule,
   ],
-  providers: [PostandgetService,SearchfilterService],
+  providers: [PostandgetService,SearchfilterService,DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

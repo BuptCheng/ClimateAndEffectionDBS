@@ -32,6 +32,12 @@ public class FlightTime {
     @Column(name = "ARRIVE_DELAY")
     private Integer arrDelay;
 
+    @Column(name = "AIRTIME")
+    private Integer airTime;
+
+    @Column(name = "DISTANCE")
+    private Integer distance;
+
     @Column(name = "CANCELLED")
     private Integer cancelled;
 
@@ -115,10 +121,26 @@ public class FlightTime {
         this.arrDelay = arrDelay;
     }
 
+    public Integer getAirTime() {
+        return airTime;
+    }
+
+    public void setAirTime(Integer airTime) {
+        this.airTime = airTime;
+    }
+
+    public Integer getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Integer distance) {
+        this.distance = distance;
+    }
+
     public FlightTime() {
     }
 
-    public FlightTime(FlightTimeId flightTimeId, String destAirport, Integer day, Integer schDepTime, Integer depTime, Integer depDelay, Integer schArrTime, Integer arrTime, Integer arrDelay, Integer cancelled) {
+    public FlightTime(FlightTimeId flightTimeId, String destAirport, Integer day, Integer schDepTime, Integer depTime, Integer depDelay, Integer schArrTime, Integer arrTime, Integer arrDelay, Integer airTime, Integer distance, Integer cancelled) {
         this.flightTimeId = flightTimeId;
         this.destAirport = destAirport;
         this.day = day;
@@ -128,6 +150,8 @@ public class FlightTime {
         this.schArrTime = schArrTime;
         this.arrTime = arrTime;
         this.arrDelay = arrDelay;
+        this.airTime = airTime;
+        this.distance = distance;
         this.cancelled = cancelled;
     }
 }

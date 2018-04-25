@@ -6,12 +6,12 @@
   <form>
     <mat-form-field>
       <input matInput placeholder="From City or Airport" name="start" id="fromplace"
-             [(ngModel)]="startdestination">
+             [(ngModel)]="startdestination" (change)="changestartinput()">
     </mat-form-field>
 
     <mat-form-field>
       <input matInput placeholder="To City or Airport" name="destination" id="toplace"
-             [(ngModel)]="enddestination">
+             [(ngModel)]="enddestination" (change)="changeendinput()">
     </mat-form-field>
 
     <mat-form-field>

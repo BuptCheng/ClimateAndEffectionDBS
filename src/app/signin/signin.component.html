@@ -1,27 +1,36 @@
 <div class = "container" fxLayoutAlign="center center" fxLayout.sm="column" fxLayout.xs="column"
 fxLayoutAlign.xs="center center" fxLayoutAlign.sm="center center"
 fxLayoutAlign.gt-sm="center center" fxFlexAlign="center center"
-style="height: 50em;margin-left:-0.02em;margin-top:-0.1em">
-  <br><br>
+style="height:55em;margin-left:-0.02em;margin-top:-0.1em">
+
+<br>
+<br>
+<br>
 <div *ngIf = "notsigned" >
   <mat-toolbar color="accent" theme="light">
     <mat-toolbar-row>
       <span>Sign In</span>
     </mat-toolbar-row>
   </mat-toolbar>
+
   <mat-card>
     <form>
         <mat-form-field>
-            <input matInput placeholder="UserName" type="text" id="username" required>
-        </mat-form-field>
+            <input matInput placeholder="UserName" [formControl]="usernameControl" type="text" id="username" #username required>
+            <mat-error *ngIf="usernameControl.invalid">You must enter a value</mat-error>
+          </mat-form-field>
 
         <mat-form-field>
-            <input matInput placeholder="Password" type="text" id="password" required>
-        </mat-form-field>
+            <input matInput placeholder="Password" [formControl]="passwordControl" type="text" id="password" #password required>
+            <mat-error *ngIf="passwordControl.invalid">You must enter a value</mat-error>
+          </mat-form-field>
 
         <div style="text-align:center;">
-          <button mat-button color="primary" type="submit" class="sign in" (click)="statecheck(notsigned)">Sign In</button>
+          <button mat-button color="primary" type="submit" class="sign in"  (click)="statecheck(username.value, password.value)">Sign In</button>
           <button mat-button color="primary" type="button" class="sign up" routerLink="/signup" >Sign Up</button>
+          <br>
+          <button mat-button color="primary" type="button" class="forgetepassword" routerLink="/resetpassword" >Forget Password</button>
+          <button mat-button color="primary" type="button" class="delete account" routerLink="/deleteaccount" >Delete Account</button>
         </div>
 
     </form>

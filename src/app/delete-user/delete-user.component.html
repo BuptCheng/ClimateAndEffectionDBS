@@ -9,7 +9,7 @@ style="height:55em;margin-left:-0.02em;margin-top:-0.1em">
 <mat-toolbar color="accent" theme="light">
   <mat-toolbar-row>
 
-    <span>Sign Up</span>
+    <span>Delete Account</span>
   </mat-toolbar-row>
 </mat-toolbar>
 
@@ -22,13 +22,8 @@ style="height:55em;margin-left:-0.02em;margin-top:-0.1em">
             <mat-error *ngIf="usernameControl.invalid">You must enter a value</mat-error>
         </mat-form-field>
 
-        <mat-form-field>
-            <input matInput placeholder="Password" [formControl]="passwordControl" type="text" id="password" #password required>
-            <mat-error *ngIf="passwordControl.invalid">You must enter a value</mat-error>
-        </mat-form-field>
-
         <div style="text-align:center;">
-          <button mat-button color="primary" type="submit" class="register" (click) = "insertNewUser(username.value, password.value)" [routerLink]="['../']">Register</button>
+          <button mat-button color="primary" type="submit" class="deleteuser" (click) = "deleteUser(username.value)" [routerLink]="['../']">Delete Account</button>
           <button mat-button color="primary" type="button" class="cancel" [routerLink]="['../']">Cancel</button>
         </div>
 

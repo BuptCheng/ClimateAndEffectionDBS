@@ -40,9 +40,9 @@ export class ClimatelistComponent implements OnInit,  AfterViewInit {
 
   onGet(){
     const start = 'datestart='+this.sfservice.startdate.getFullYear()
-    +'-'+(this.sfservice.startdate.getMonth()+1)+'-'+this.sfservice.startdate.getDay();
+    +'-'+(this.sfservice.startdate.getMonth()+1)+'-'+this.sfservice.startdate.getDate();
     const end = 'dateend='+this.sfservice.enddate.getFullYear()
-    +'-'+(this.sfservice.enddate.getMonth()+1)+'-'+this.sfservice.enddate.getDay();
+    +'-'+(this.sfservice.enddate.getMonth()+1)+'-'+this.sfservice.enddate.getDate();
     const city = 'city=' + this.sfservice.city;
     this.pgservice.getWeatherDatafromdatabase('daterangeandcity?'+start+'&'+end+'&'+city)
       .subscribe(
@@ -54,7 +54,7 @@ export class ClimatelistComponent implements OnInit,  AfterViewInit {
   addcolumns(input : Welement){
     this.displayedColumns = [];
     if(input.locationID != null)this.displayedColumns.push('locationID');
-    if(input.date != null)this.displayedColumns.push('date');
+    if(input.windDate != null)this.displayedColumns.push('windDate');
     if(input.city != null)this.displayedColumns.push('city');
     if(input.latitude != null)this.displayedColumns.push('latitude');
     if(input.longitude != null)this.displayedColumns.push('longitude');

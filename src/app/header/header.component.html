@@ -4,7 +4,11 @@
     <button mat-button color="primary" type="button" [routerLink]="''" >Home</button>
     <button mat-button color="primary" type="button" [routerLink]="'climate'" >Search Weather</button>
     <button mat-button color="primary" type="button" [routerLink]="'flight'" >Search Flight</button>
-    <button mat-button color="primary" type="button" [routerLink]="'WeatherAndFlight'" >Delay and Cancel analysis</button>
+    <button mat-button color="primary" [matMenuTriggerFor]="menu">Analysis</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item color="primary" type="button" routerLink="../delayanalysis">Delay Analysis</button>
+      <button mat-menu-item color="primary" type="button" routerLink="../CustomerReviewAnalysis">Customer Review Analysis</button>
+    </mat-menu>
 
   </mat-toolbar-row>
 

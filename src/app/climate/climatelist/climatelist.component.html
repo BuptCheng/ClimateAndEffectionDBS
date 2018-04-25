@@ -1,5 +1,5 @@
-<p>start from:{{startdate}} to {{enddate}} at  {{city}}</p>
-<button class="btn btn-primary" (click)="onshow()">Show</button>
+<!--<p>start from:{{startdate}} to {{enddate}} at  {{city}}</p>-->
+<!--<button class="btn btn-primary" (click)="onshow()">Show</button>-->
 <div class="example-header">
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
@@ -15,12 +15,12 @@
 
     <ng-container matColumnDef="date">
       <mat-header-cell *matHeaderCellDef mat-sort-header> date </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.date}}</mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.windDate}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="winddate">
+    <ng-container matColumnDef="windDate">
       <mat-header-cell *matHeaderCellDef mat-sort-header> date </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.date}}</mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.windDate}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="city">
@@ -55,12 +55,12 @@
 
     <ng-container matColumnDef="windspeed">
       <mat-header-cell *matHeaderCellDef mat-sort-header> windspeed </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.windspeed}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.windSpeed}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="desc">
       <mat-header-cell *matHeaderCellDef mat-sort-header> desc </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.desc}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.windDesc}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

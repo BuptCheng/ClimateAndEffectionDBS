@@ -3,11 +3,11 @@ import { DataService } from './../data.service';
 import {FormControl,Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  selector: 'app-resetpassword',
+  templateUrl: './resetpassword.component.html',
+  styleUrls: ['./resetpassword.component.css']
 })
-export class SignupComponent implements OnInit {
+export class ResetpasswordComponent implements OnInit {
   usernameControl = new FormControl('', [Validators.required]);
   passwordControl = new FormControl('', [Validators.required]);
 
@@ -19,12 +19,12 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
-  insertNewUser(_username, _password){
+  resetPassword(_username, _newpassword){
   
-    console.log("app.conponent.ts(), insertUser() called... name: " + _username + ", _password: " + _password);
+    console.log("app.conponent.ts(), resetPassword() called... name: " + _username + ", _password: " + _newpassword);
     
-    var myobj = { NAME: _username, PASSWORD: _password };
-    this._dataService.insertNewUser(myobj)
+    var myobj = { NAME: _username, PASSWORD: _newpassword };
+    this._dataService.updateUser(myobj)
       .subscribe(res => this.users = res);    
   }  
 }

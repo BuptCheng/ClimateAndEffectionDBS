@@ -23,6 +23,7 @@ export  class PostandgetService {
   getWeatherDatafromdatabase(condition:string) {
     const headers =new Headers({'Access-Control-Allow-Origin':'*',
       'content-type':'application/json'} );
+    console.log(condition);
     return this.http.get(this.oracleurl+'weather/'+condition ,{headers: headers})
       .map(
         (response: Response) => {
@@ -35,9 +36,11 @@ export  class PostandgetService {
   getFlightDatafromdatabase(condition:string) {
     const headers =new Headers({'Access-Control-Allow-Origin':'*',
       'content-type':'application/json'} );
+    console.log(condition);
     return this.http.get(this.oracleurl+condition ,{headers: headers})
       .map(
         (response: Response) => {
+          console.log(response);
           const data:Felement[] = response.json();
           console.log(data);
           return data;
@@ -46,12 +49,11 @@ export  class PostandgetService {
   }
   getFcodeDatafromdatabase(condition:string) {
     const headers =new Headers({'Access-Control-Allow-Origin':'*',
-      'content-type':'application/json'} );
+      'content-type':'text/plain;charset=UTF-8'} );
     return this.http.get(this.oracleurl+condition ,{headers: headers})
       .map(
         (response: Response) => {
-          const data:string = response.json();
-          console.log(data);
+          const data = response.text();
           return data;
         }
       );

@@ -17,11 +17,11 @@ export class ClimateComponent implements OnInit {
   startFilter = (d: Date): boolean => {
     const year = d.getFullYear();
     if(this.enddate === null) return year === 2015;
-    return year === 2015 && d<this.enddate;
+    return year >= 2012 && year <= 2015 && d<this.enddate;
   };
   endFilter = (d: Date): boolean => {
     const year = d.getFullYear();
-    return year === 2015 && this.startdate<d;
+    return year >= 2012 && year <= 2015 && this.startdate<d;
   };
 //  myControl = new FormControl();
   constructor(private pgservice: PostandgetService ,

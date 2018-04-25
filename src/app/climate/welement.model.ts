@@ -1,6 +1,6 @@
 export class Welement {
   locationID: number;
-  date: string;
+  windDate: string;
   city: string;
   latitude: number;
   longitude:number;
@@ -21,7 +21,7 @@ export class Welement {
       'Montreal	', 'Boston'	,'Beersheba',	'Tel Aviv District'	,
       'Eilat'	, 'Haifa'	,'Nahariyya',	'Jerusalem',
     ];
-    this.date=date;
+    this.windDate=date;
     this.temperature = temperature;
     this.windDesc = descs[Math.round(Math.random()*(descs.length-1))];
   }

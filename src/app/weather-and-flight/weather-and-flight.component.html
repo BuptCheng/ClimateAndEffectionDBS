@@ -1,28 +1,32 @@
 <div class = "container" fxLayoutAlign="center center" fxLayout.sm="column" fxLayout.xs="column"
       fxLayoutAlign.xs="center center" fxLayoutAlign.sm="center center"
       fxLayoutAlign.gt-sm="center center" fxFlexAlign="center center"
-      style="height:50em;margin-left:-0.02em;margin-top:-0.1em">
+      style="height:55em;margin-left:-0.02em;margin-top:-0.1em">
 
   <form>
-     <p> Find delay records</p>
+     <p>Find delay rate in each airport</p>
 
       <mat-form-field>
-        <input type="text" placeholder="Airline" aria-label="Airline" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <input type="text" placeholder="Airport" aria-label="Airport" matInput [formControl]="myControl" [matAutocomplete]="auto" #Airport
+               [(ngModel)]="airport" >
+        <mat-error *ngIf="myControl.invalid">You must enter a value</mat-error>
         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option"
+                      >
             {{ option.name }}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
 
       <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <input matInput [(ngModel)] = "delayOrCancelDate" name = "DelayOrCancelDate" #DelayOrCancelDate [matDatepicker]="picker" placeholder="Choose a date">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <br>
-      <button mat-button color="primary" type="submit" class="search" routerLink="../">Search</button>
+      <button mat-button color="primary" type="submit" class="search" routerLink="../WeatherAndFlightResult/{{Airport.value}}/{{DelayOrCancelDate.value}}">Search</button>
       &nbsp;  &nbsp; &nbsp;
-      <button mat-button color="primary" type="button" class="reset" >Reset</button>
+      <button mat-button color="primary" type="button" class="reset" (click)="reset()" >Reset</button>
   </form>
 </div>
+<p>{{airport}}{{delayOrCancelDate}}</p>
