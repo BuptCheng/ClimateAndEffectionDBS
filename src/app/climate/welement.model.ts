@@ -25,13 +25,4 @@ export class Welement {
     this.temperature = temperature;
     this.desc = descs[Math.round(Math.random()*(descs.length-1))];
   }
-  getdate(){
-    return this.date;
-  }
-  getdesc(){
-    return this.desc;
-  }
-  gettemperature(){
-    return this.temperature;
-  }
 }

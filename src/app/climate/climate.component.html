@@ -2,24 +2,24 @@
      fxLayoutAlign.xs="center center" fxLayoutAlign.sm="center center"
      fxLayoutAlign.gt-sm="center center" fxFlexAlign="center center"
      style="height:50em;margin-left:-0.02em;margin-top:-0.1em">
-  <form>
+  <form name="inputfield">
 <mat-form-field>
-  <input matInput [matDatepickerFilter]="startFilter" [matDatepicker]="picker1" placeholder="Choose a start date"
+  <input matInput [matDatepickerFilter]="startFilter" [matDatepicker]="picker1" placeholder="Choose a start date" disabled
          [value]="startdate" (dateInput)="startdate = $event.value"
   >
   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-  <mat-datepicker #picker1></mat-datepicker>
+  <mat-datepicker #picker1 disabled="false"></mat-datepicker>
 </mat-form-field>
 <mat-form-field>
-  <input matInput [matDatepickerFilter]="endFilter" [matDatepicker]="picker2" placeholder="Choose a end date"
+  <input matInput [matDatepickerFilter]="endFilter" [matDatepicker]="picker2" placeholder="Choose a end date" disabled
          [value]="enddate"  (dateInput)="enddate = $event.value"
   >
   <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-  <mat-datepicker #picker2></mat-datepicker>
+  <mat-datepicker #picker2 [disabled]="(startdate === null)"></mat-datepicker>
 </mat-form-field>
 
   <mat-form-field>
-    <mat-select placeholder="Select Location" [(ngModel)]="city" name="city">
+    <mat-select placeholder="Select Location" [disabled]="(startdate === null||enddate === null)"  [(ngModel)]="city" name="city">
       <mat-option *ngFor="let city of cities" [value]="city">
         {{city}}
       </mat-option>
@@ -32,8 +32,9 @@
     <!--</mat-autocomplete>-->
   </mat-form-field>
     <br>
-    <button mat-button color="primary" type="submit" class="search" [routerLink]="'list'"
-            (click)="onsubmit()">Search</button>
+    <button  mat-button color="primary" type="submit" class="search"
+             [routerLink]="'list'" (click)="onsubmit()"
+             [disabled] = "autocheck()" >Search</button>
     &nbsp;  &nbsp; &nbsp;
     <button mat-button color="primary" type="button" class="reset"
     (click)="onreset()">Reset</button>

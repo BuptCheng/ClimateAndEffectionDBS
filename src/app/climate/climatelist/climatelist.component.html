@@ -1,6 +1,4 @@
-<p>start from:{{startdate}} to {{enddate}}</p>
-
-
+<p>start from:{{startdate}} to {{enddate}} at  {{city}}</p>
 <button class="btn btn-primary" (click)="onshow()">Show</button>
 <div class="example-header">
   <mat-form-field>
@@ -21,7 +19,7 @@
     </ng-container>
 
     <ng-container matColumnDef="city">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> cityName </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> city </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.city}} </mat-cell>
     </ng-container>
 
@@ -70,12 +68,4 @@
                  [showFirstLastButtons]="true">
   </mat-paginator>
 </div>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <ul class="list-group" *ngFor="let server of ELEMENT_DATA">
-        <li class="list-group-item">{{ server.date }} (ID: {{ server.desc }})</li>
-      </ul>
-    </div>
-  </div>
-</div>
+

@@ -15,12 +15,13 @@ export class ClimateComponent implements OnInit {
   enddate = new Date(2015,1,20);
   city: string = 'Boston';
   startFilter = (d: Date): boolean => {
-    const day = d.getDay();
-    return day !== 0 && day !== 6;
+    const year = d.getFullYear();
+    if(this.enddate === null) return year === 2015;
+    return year === 2015 && d<this.enddate;
   };
   endFilter = (d: Date): boolean => {
-    const day = d.getDay();
-    return day !== 0 && day !== 6;
+    const year = d.getFullYear();
+    return year === 2015 && this.startdate<d;
   };
 //  myControl = new FormControl();
   constructor(private pgservice: PostandgetService ,
@@ -36,7 +37,9 @@ export class ClimateComponent implements OnInit {
     this.enddate = null;
     this.city = '';
   }
-
+  autocheck(){
+    return this.enddate===null||this.startdate===null||this.city==='';
+  }
   ngOnInit() {
   }
   cities: string[] = ['Boston','Vancouver','Portland','San Francisco',

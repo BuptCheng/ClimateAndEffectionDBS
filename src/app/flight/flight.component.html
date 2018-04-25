@@ -5,25 +5,25 @@
 
   <form>
     <mat-form-field>
-      <input matInput placeholder="From City or Airport" type="text" id="fromplace" required
-             [value]="startdestination">
+      <input matInput placeholder="From City or Airport" name="start" id="fromplace"
+             [(ngModel)]="startdestination">
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="To City or Airport" type="text" id="toplace" required
-             [value]="enddestination">
+      <input matInput placeholder="To City or Airport" name="destination" id="toplace"
+             [(ngModel)]="enddestination">
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput [matDatepicker]="picker1" placeholder="Choose a date"
+      <input matInput [matDatepickerFilter]="dateFilter" [matDatepicker]="picker1" placeholder="Choose a date" disabled
              [value]="date" (dateInput)="date = $event.value"
       >
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-      <mat-datepicker #picker1></mat-datepicker>
+      <mat-datepicker #picker1 disabled="false"></mat-datepicker>
     </mat-form-field>
     <br>
-    <button mat-button color="primary" type="submit" class="search" [routerLink]="'list'"
-    (click)="onsubmit()">Search</button>
+    <button  mat-button color="primary" type="submit" class="search" [routerLink]="'list'"
+    (click)="onsubmit()" [disabled]="autocheck()" >Search</button>
     &nbsp;  &nbsp; &nbsp;
     <button mat-button color="primary" type="button" class="reset"
             (click)="onreset()">Reset</button>

@@ -18,7 +18,7 @@ export class ClimatelistComponent implements OnInit,  AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(private pgservice: PostandgetService,
-              private cdservice: SearchfilterService){
+              private sfservice: SearchfilterService){
   }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -27,8 +27,9 @@ export class ClimatelistComponent implements OnInit,  AfterViewInit {
   }
   ngOnInit() {
     this.onGet();
-    this.startdate = this.cdservice.startdate;
-    this.enddate = this.cdservice.enddate;
+    this.startdate = this.sfservice.startdate;
+    this.enddate = this.sfservice.enddate;
+    this.city = this.sfservice.city;
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -36,7 +37,10 @@ export class ClimatelistComponent implements OnInit,  AfterViewInit {
   }
 
   onGet(){
-    this.pgservice.getDatafromdatabase('locationId')
+    const start = 'datestart='+this.sfservice.startdate;
+    const end = 'dateend='+ this.sfservice.enddate;
+    const city = 'city=' + this.city;
+    this.pgservice.getDatafromdatabase('daterangeandcity?'+start+'&'+end+'&'+city)
       .subscribe(
         (ELEMENT: Welement[]) => {this.dataSource.data = ELEMENT,
         this.addcolumns(ELEMENT[0])},
