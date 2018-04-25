@@ -21,7 +21,7 @@ public class WeatherInfo {
     private long wid;
 
     @Column(name="WINDDATE")
-    private String windDate;
+    private String date;
     @Column(name="CITY")
     private String city;
     @Column(name="HUMIDITY")
@@ -35,13 +35,13 @@ public class WeatherInfo {
     @Column(name="WINDDESC")
     private String windDesc;
     WeatherInfo(){};
-    WeatherInfo(String city, String windDate){
+    WeatherInfo(String city, String date){
         this.city = city;
-        this.windDate = windDate;
+        this.date = date;
     }
-    public WeatherInfo(long wid, String windDate, String city, BigDecimal humidity, BigDecimal pressure, BigDecimal temperature, BigDecimal windSpeed, String windDesc) {
+    public WeatherInfo(long wid, String date, String city, BigDecimal humidity, BigDecimal pressure, BigDecimal temperature, BigDecimal windSpeed, String windDesc) {
         this.wid = wid;
-        this.windDate = windDate;
+        this.date = date;
         this.city = city;
         this.humidity = humidity;
         this.pressure = pressure;
@@ -49,12 +49,12 @@ public class WeatherInfo {
         this.windSpeed = windSpeed;
         this.windDesc = windDesc;
     }
-    public String getWindDate() {
-        return windDate;
+    public String getDate() {
+        return date;
     }
 
-    public void setWindDate(String windDate) {
-        this.windDate = windDate;
+    public void setDate(String date) {
+        this.date = date;
     }
     public String getCity() {
         return city;

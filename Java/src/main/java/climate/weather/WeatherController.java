@@ -124,12 +124,12 @@ public class WeatherController {
         return entityManager.createNativeQuery(query, WeatherInfo.class).setParameter(1,date).setParameter(2,city).getResultList();
 
     }
-    //weather/daterangeandcity?datestart=2015-1-1&dateend=2015-1-2&city=Miami
+    //weather/daterangeandcity?datestart=2015-01-01&dateend=2015-01-02&city=Miami
     @RequestMapping("/weather/daterangeandcity")
     public List<WeatherInfo> weatherHandler4(@RequestParam(value="datestart", defaultValue="2015-01-01") String dateBegin, @RequestParam(value="dateend", defaultValue="2015-01-02") String dateEnd, @RequestParam(value="city", defaultValue="Miami") String city) {
 
 
-        String query = selectFrom+"where w.wdate >= to_date(?1,'yyyy--mm--dd') and w.wdate <= to_date(?2,'yyyy--mm--dd') and l.city_name = ?2";
+        String query = selectFrom+"where w.wdate >= to_date(?1,'yyyy--mm--dd') and w.wdate <= to_date(?2,'yyyy--mm--dd') and l.city_name = ?3";
 
         return entityManager.createNativeQuery(query, WeatherInfo.class).setParameter(1,dateBegin).setParameter(2,dateEnd).setParameter(3,city).getResultList();
 
