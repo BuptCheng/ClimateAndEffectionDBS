@@ -29,14 +29,9 @@ export class AirporthandlebadweatherComponent implements OnInit {
   type2 = 'column2d';
   dataFormat2 = 'json';
   dataSource2;
-  description:string ='snow';
+  description:string ='rain';
   lefttable:any[] =[];
-  sunnytable: any[]=[{"label": "Boston",
-    "value": "880000"},{"label": "Boston",
-    "value": "880000"},{"label": "Boston",
-    "value": "880000"},{"label": "Boston",
-    "value": "880000"},{"label": "Boston",
-    "value": "880000"}];
+  sunnytable: any[]=[];
   condition:string;
   constructor(private location: Location,
               private _dataService:DataService) {
@@ -45,30 +40,31 @@ export class AirporthandlebadweatherComponent implements OnInit {
     this.adddataSource();
   }
   searchsunny(){
-    this.condition='insight/queryDelayWeather?airport='+'Orlando International Airport'+'&'+'desc=sun';
+    this.condition='insight/queryDelayWeather?airport='+'Indianapolis International Airport'+'&'+'desc=snow';
     this._dataService.getResults(this.condition)
       .subscribe((res:any[]) => {
+        console.log(res)
+
         for(const ele of res ){
+          ele.label = ele.key;
           ele.value = ele.value * 100 ;
-          ele.label=ele.key;
           delete ele.key;
         }
-        console.log(res);
-        this.lefttable = res;
+        this.sunnytable = res;
         this.adddataSource();
       });
   }
   search(){
-    this.condition='insight/queryDelayWeather?airport='+this.airport+'&'+'desc='+this.description;
+    this.condition='insight/queryDelayWeather?airport='+this.airport.nativeElement.value+'&'+'desc='+this.description;
     this._dataService.getResults(this.condition)
       .subscribe((res:any[]) => {
+        console.log(res)
         for(const ele of res ){
+          ele.label = ele.key;
           ele.value = ele.value * 100 ;
-          ele.label=ele.key;
           delete ele.key;
         }
-        console.log(res);
-        this.sunnytable = res;
+        this.lefttable = res;
         this.adddataSource();
       });
     setTimeout(500);
@@ -77,30 +73,30 @@ export class AirporthandlebadweatherComponent implements OnInit {
   adddataSource(){
     this.dataSource1 = {
       "chart": {
-        "caption": "Top 5 Hotest Citis and its Temperature",
+        "caption": "",
         "subCaption": "",
         "numberSuffix": "%",
         "decimals":"2",
         "theme": "fint",
-        "yAxisMaxValue": "100",
-        "yAxisMinValue": "0",
-        "allowPinMode":0,
-      },
-      "data": this.sunnytable
-    }
-    setTimeout(500);
-    this.dataSource2 = {
-      "chart": {
-        "caption": "Top 5 Coldest Citis and its Temperature",
-        "subCaption": "",
-        "numberSuffix": "%",
-        "decimals":"2",
-        "theme": "fint",
-        "yAxisMaxValue": "100",
+        "yAxisMaxValue": "20",
         "yAxisMinValue": "0",
         "allowPinMode":0,
       },
       "data": this.lefttable
+    }
+    setTimeout(500);
+    this.dataSource2 = {
+      "chart": {
+        "caption": "",
+        "subCaption": "",
+        "numberSuffix": "%",
+        "decimals":"2",
+        "theme": "fint",
+        "yAxisMaxValue": "20",
+        "yAxisMinValue": "0",
+        "allowPinMode":0,
+      },
+      "data": this.sunnytable
     }
   }
 

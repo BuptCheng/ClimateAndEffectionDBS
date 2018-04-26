@@ -26,5 +26,7 @@ export class SignupComponent implements OnInit {
     var myobj = { NAME: _username, PASSWORD: _password };
     this._dataService.insertNewUser(myobj)
       .subscribe(res => this.users = res);    
+
+      
   }  
 }

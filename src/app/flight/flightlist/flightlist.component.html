@@ -1,71 +1,82 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
 
-<div class="example-header">
-  <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-  </mat-form-field>
-</div>
+      <div class="example-header">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+      </div>
 
-<div class="example-container mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource" matSort>
-    displayedColumns = ['date', 'airlineNumber', 'originAirport', 'destAirport'];
+      <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="dataSource" matSort>
+          displayedColumns = ['date', 'airlineNumber', 'originAirport', 'destAirport'];
 
-    <ng-container matColumnDef="date">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> date </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.flightId.date.substr(0,10)}}</mat-cell>
-    </ng-container>
+          <ng-container matColumnDef="date">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> date </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.flightId.date.substr(0,10)}}</mat-cell>
+          </ng-container>
 
-    <ng-container matColumnDef="airlineNumber">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> airlineNumber </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.flightId.airline.code}}{{element.flightId.flightNum}}</mat-cell>
-    </ng-container>
+          <ng-container matColumnDef="airlineNumber">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> airlineNumber </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.flightId.airline.code}}{{element.flightId.flightNum}}</mat-cell>
+          </ng-container>
 
-    <ng-container matColumnDef="originAirport">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> originAirport </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.flightId.originAirport}} </mat-cell>
-    </ng-container>
+          <ng-container matColumnDef="originAirport">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> originAirport </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.flightId.originAirport}} </mat-cell>
+          </ng-container>
 
-    <ng-container matColumnDef="destAirport">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> destAirport </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.destAirport}}</mat-cell>
-    </ng-container>
+          <ng-container matColumnDef="destAirport">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> destAirport </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.destAirport}}</mat-cell>
+          </ng-container>
 
-    <ng-container matColumnDef="longitude">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> longitude </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.longitude}}</mat-cell>
-    </ng-container>
+          <ng-container matColumnDef="longitude">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> longitude </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.longitude}}</mat-cell>
+          </ng-container>
 
-    <ng-container matColumnDef="temperature">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> temperature </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.temperature}} </mat-cell>
-    </ng-container>
+          <ng-container matColumnDef="temperature">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> temperature </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.temperature}} </mat-cell>
+          </ng-container>
 
-    <ng-container matColumnDef="humidity">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> humidity </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.humidity}} </mat-cell>
-    </ng-container>
+          <ng-container matColumnDef="humidity">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> humidity </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.humidity}} </mat-cell>
+          </ng-container>
 
-    <ng-container matColumnDef="pressure">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> pressure </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.pressure}} </mat-cell>
-    </ng-container>
+          <ng-container matColumnDef="pressure">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> pressure </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.pressure}} </mat-cell>
+          </ng-container>
 
-    <ng-container matColumnDef="windspeed">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> windspeed </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.windspeed}} </mat-cell>
-    </ng-container>
+          <ng-container matColumnDef="windspeed">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> windspeed </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.windspeed}} </mat-cell>
+          </ng-container>
 
-    <ng-container matColumnDef="desc">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> desc </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.desc}} </mat-cell>
-    </ng-container>
+          <ng-container matColumnDef="desc">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> desc </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.desc}} </mat-cell>
+          </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
 
-  <mat-paginator #paginator
-                 [pageSize]="10"
-                 [pageSizeOptions]="[5, 10, 20 , 100]"
-                 [showFirstLastButtons]="true">
-  </mat-paginator>
+        <mat-paginator #paginator
+                       [pageSize]="10"
+                       [pageSizeOptions]="[5, 10, 20 , 100]"
+                       [showFirstLastButtons]="true">
+        </mat-paginator>
+      </div>
+      <button mat-raised-button color="primary" type="button" routerLink="../../flight"
+      >Go Back</button>
+
+    </div>
+    <div class="col-md-1"></div>s
+  </div>
 </div>

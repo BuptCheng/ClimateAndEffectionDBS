@@ -1,7 +1,7 @@
 <div class = "container" fxLayoutAlign="center center" fxLayout.sm="column" fxLayout.xs="column"
 fxLayoutAlign.xs="center center" fxLayoutAlign.sm="center center"
 fxLayoutAlign.gt-sm="center center" fxFlexAlign="center center"
-style="height:55em;margin-left:-0.02em;margin-top:-0.1em">
+style="height:50em;margin-left:-0.02em;margin-top:-0.1em">
 
 <br>
 <br>
@@ -28,7 +28,7 @@ style="height:55em;margin-left:-0.02em;margin-top:-0.1em">
         </mat-form-field>
 
         <div style="text-align:center;">
-          <button mat-button color="primary" type="submit" class="register" (click) = "insertNewUser(username.value, password.value)" [routerLink]="['../']">Register</button>
+          <button mat-button color="primary" type="button" class="register" (click) = "insertNewUser(username.value, password.value)" [routerLink]="['../']">Register</button>
           <button mat-button color="primary" type="button" class="cancel" [routerLink]="['../']">Cancel</button>
         </div>
 

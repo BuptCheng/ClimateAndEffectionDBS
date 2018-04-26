@@ -10,6 +10,7 @@ import {FormControl,Validators} from '@angular/forms';
 export class ResetpasswordComponent implements OnInit {
   usernameControl = new FormControl('', [Validators.required]);
   passwordControl = new FormControl('', [Validators.required]);
+  oldpasswordControl = new FormControl('', [Validators.required]);
 
   users: Array<any>;
   constructor(private _dataService: DataService) { 
@@ -19,11 +20,11 @@ export class ResetpasswordComponent implements OnInit {
   ngOnInit() {
   }
 
-  resetPassword(_username, _newpassword){
+  resetPassword(_username,_newpassword, _oldpassword ){
   
     console.log("app.conponent.ts(), resetPassword() called... name: " + _username + ", _password: " + _newpassword);
     
-    var myobj = { NAME: _username, PASSWORD: _newpassword };
+    var myobj = { name: _username,  newPassword: _newpassword, oldPassword: _oldpassword };
     this._dataService.updateUser(myobj)
       .subscribe(res => this.users = res);    
   }  

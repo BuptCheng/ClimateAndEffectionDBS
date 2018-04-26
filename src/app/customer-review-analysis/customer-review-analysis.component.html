@@ -1,13 +1,22 @@
-<h1>
-    {{title}}
-  </h1>
-  <fusioncharts
-      [id]="id"
-      [width]="width"
-      [height]="height"
-      [type]="type"
-      [dataFormat]="dataFormat"
-      [dataSource]="dataSource"
-  ></fusioncharts>
-  
-<button mat-button color="primary" type="button" routerLink="../">Go Back</button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <h1>
+        {{title}}
+      </h1>
+      <fusioncharts
+        [id]="id"
+        [width]="width"
+        [height]="height"
+        [type]="type"
+        [dataFormat]="dataFormat"
+        [dataSource]="dataSource"
+      ></fusioncharts>
+
+      <button mat-raised-button color="primary" type="button" routerLink="../">Go Back</button>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+

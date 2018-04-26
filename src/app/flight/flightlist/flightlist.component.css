@@ -1,14 +1,11 @@
 .container {
-  background-image: url('/assets/HPbg.jpeg');
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
   top: 0;
   width: 100%;
-
+  margin-top: 50px;
 }
 form{
   position: relative;
-  top : 15%;
+  top : 30%;
   color: black;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;

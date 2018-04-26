@@ -32,18 +32,19 @@ export class SigninComponent implements OnInit {
     this._dataService.getUsers(myobj)
           .subscribe((res:any) => {
             this.checkpassword = res;
+            console.log("res getUsers: " + res);
             /* console.log("student.components get usres: res: " + res);
             console.log("first array: " + JSON.stringify(this.users[0]));
             console.log("name: " + this.users[0].NAME);
             console.log("password: " + this.users[0].PASSWORD);
             */
-           if (this.checkpassword[0].name == '') {
-            this.notsigned = true;
-            this.signed = false;
-           }
-           else {
+           if (this.checkpassword != null && this.checkpassword.length != 0) {
             this.notsigned = false;
             this.signed = true;
+           }
+           else {
+            this.notsigned = true;
+            this.signed = false;
            }
       
       })

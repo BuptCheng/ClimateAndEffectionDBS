@@ -26,11 +26,8 @@ export class ClimatelistComponent implements OnInit,  AfterViewInit {
     this.dataSource.filter = filterValue;
   }
   ngOnInit() {
-    console.log(this.enddate+this.startdate+this.city);
   }
   ngAfterViewInit() {
-   // this.startdate = this.sfservice.startdate;
-   // this.enddate = this.sfservice.enddate;
     this.city = this.sfservice.city;
     this.onGet();
     console.log(this.enddate+this.startdate+this.city);
