@@ -6,12 +6,13 @@ import javax.persistence.*;
 @Table(name = "Weather")
 public class Weather {
     @Id
-    @Column(name="Wid")
+    @Column(name="WID")
     private long wid;
-    @Column(name="Wdate")
+    @Column(name="WDATE")
     private String wdate;
-    @Column(name="location_id")
+    @Column(name="LOCATION_ID")
     private  int locationId;
+    /*
     @OneToOne
     @JoinColumn(name ="location_Id", insertable = false, updatable = false)
     public Location location;
@@ -42,11 +43,16 @@ public class Weather {
         this.weatherDescription = weatherDescription;
         this.windSpeed = windSpeed;
     }
+    */
 
-    Weather(long wid, String wdate, int locationId) {
+
+    Weather( String wdate,long wid, int locationId) {
         this.wid = wid;
         this.wdate = wdate;
         this.locationId = locationId;
+    }
+    Weather() {
+
     }
 
     public long getWid() {
