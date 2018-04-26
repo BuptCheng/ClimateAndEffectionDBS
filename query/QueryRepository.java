@@ -18,6 +18,14 @@ public interface QueryRepository extends CrudRepository<Flight, String> {
     @Query("select p.airport from Airport p where p.code = ?1")
     String findAirportByCode(String code);
 
+    @Query("select p.city from Airport p where p.code = ?1")
+    String findCityByAirport(String code);
+
+    /**
+     *
+     * normal queries
+     */
+
     @Query("select f from Flight f where f.flightId.originAirport = ?1 and f.destAirport = ?2")
     List<Flight> findByOriginAndDest(String origin, String destination);
 

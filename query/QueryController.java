@@ -76,4 +76,9 @@ public class QueryController {
     public List<Pair<String,Double>> queryDelayReason(@RequestParam("airport") String airport, @RequestParam("date") String date){
         return queryService.findDelayReason(airport, date);
     }
+
+    @RequestMapping("insight/queryDelayWeather")
+    public List<Pair<String,Double>> queryDelayWeather(@RequestParam("airport") String airport, @RequestParam("desc") String desc){
+        return queryService.findDelayByWeather(airport, desc);
+    }
 }
