@@ -54,6 +54,7 @@ import { WeatherAndFlightResultComponent } from './weather-and-flight-result/wea
 import { CustomerReviewAnalysisComponent } from './customer-review-analysis/customer-review-analysis.component';
 import {DataService} from './data.service';
 import { HottestAndColdestAnalysisComponent } from './hottest-and-coldest-analysis/hottest-and-coldest-analysis.component';
+import { AirporthandlebadweatherComponent } from './airporthandlebadweather/airporthandlebadweather.component';
 
 
 const appRoutes: Routes = [
@@ -71,6 +72,8 @@ const appRoutes: Routes = [
   { path: 'WeatherAndFlightResult/:airport/:month/:day/:year', component: WeatherAndFlightResultComponent },
   { path: 'CustomerReviewAnalysis', component: CustomerReviewAnalysisComponent },
   { path: 'hotandcold', component: HottestAndColdestAnalysisComponent },
+  { path: 'Airporthandlebadweather', component: AirporthandlebadweatherComponent },
+
 ];
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
@@ -93,6 +96,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
     WeatherAndFlightResultComponent,
     CustomerReviewAnalysisComponent,
     HottestAndColdestAnalysisComponent,
+    AirporthandlebadweatherComponent,
   ],
   imports: [
     BrowserModule,

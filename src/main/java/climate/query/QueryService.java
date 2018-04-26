@@ -4,10 +4,12 @@ import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import climate.weather.WeatherController;
+import climate.weather.entity.Weather;
 
 @Service
 public class QueryService {
@@ -27,6 +29,10 @@ public class QueryService {
 
     public String findAirportByCode(String code){
         return queryRepository.findAirportByCode(code);
+    }
+
+    public String findCityByCode(String code){
+        return queryRepository.findCityByAirport(code);
     }
 
     /**
@@ -161,5 +167,35 @@ public class QueryService {
         }
 
         return null;
+    }
+
+    public List<Pair<String, Double>> findDelayByWeather(String airportName, String desc){
+
+        String airportCode = queryRepository.findCodeByAirport(airportName);
+        String city = queryRepository.findCityByAirport(airportCode);
+        WeatherController weatherController = new WeatherController();
+        List<String> dates = weatherController.findDate(city, desc);
+
+        List<Pair<String, Double>> res = new ArrayList<>();
+        Map<String, Double> avg = new HashMap<>();
+        List<String> airlines = new ArrayList<>();
+        for(String date : dates){
+            List<Pair<String, Double>> tmp = this.findDelayReason(airportName, date);
+            for(int i = 0; i < tmp.size(); ++i){
+                String key = tmp.get(i).getKey();
+                if(avg.get(key) == null){
+                    avg.put(key, tmp.get(i).getValue());
+                    airlines.add(tmp.get(i).getKey());
+                }else{
+                    avg.put(key, avg.get(key) + tmp.get(i).getValue()) ;
+                }
+            }
+        }
+        for(int i = 0; i < airlines.size(); ++i){
+            String key = airlines.get(i);
+            avg.put(key, avg.get(key) / dates.size());
+            res.add(new Pair<>(key, avg.get(key)));
+        }
+        return res;
     }
 }

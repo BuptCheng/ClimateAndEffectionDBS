@@ -13,7 +13,7 @@ import {FormControl} from '@angular/forms';
 export class ClimateComponent implements OnInit {
   startdate = new Date(2015,0,3);
   enddate = new Date(2015,1,20);
-  city: string = 'Boston';
+  city: string = 'San Diego';
   startFilter = (d: Date): boolean => {
     const year = d.getFullYear();
     if(this.enddate === null) return year === 2015;

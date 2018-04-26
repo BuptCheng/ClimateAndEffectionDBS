@@ -51,7 +51,7 @@ export class WeatherAndFlightResultComponent implements OnInit {
         "caption": "Delay Rate in "+this.year + "-" + this.month + "-" + this.day,
         "subCaption": "At "+this.airport,
         "numberSuffix": "%",
-        "decimals":"4",
+        "decimals":"2",
         "theme": "fint",
         "yAxisMaxValue": "100",
         "yAxisMinValue": "0",

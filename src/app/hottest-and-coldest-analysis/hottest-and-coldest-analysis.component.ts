@@ -22,8 +22,8 @@ export class HottestAndColdestAnalysisComponent implements OnInit {
   dataFormat2 = 'json';
   dataSource2;
   thedate;
-  year ='2015';
-  mouth = '1';
+  year:number =2015;
+  month:number =1;
   hottest:any[] =[{"label": "Boston",
     "value": "880000"},{"label": "Boston",
     "value": "880000"},{"label": "Boston",
@@ -39,49 +39,55 @@ export class HottestAndColdestAnalysisComponent implements OnInit {
   condition:string;
   constructor(private location: Location,
   private _dataService:DataService) {
-    //this.search();
-    this.adddataSource();
+    this.search();
+    //this.adddataSource();
   }
   search(){
-    this.condition='weather/coldestcitybymonth?month='+this.year+'-'+this.mouth;
+    this.condition='weather/coldestcitybymonth?month='+this.year+'-'+this.month;
     this._dataService.getResults(this.condition)
       .subscribe((res:any[]) => {
         for(const ele of res ){
           ele.label=ele.city;
-          ele.value=ele.temperature;
+          ele.value=ele.temperature-273;
         }
         this.coldest = res;
       });
-    this.condition='weather/hottestcitybymonth?month='+this.year+'-'+this.mouth;
+    setTimeout(500);
+    this.condition='weather/hottestcitybymonth?month='+this.year+'-'+this.month;
     this._dataService.getResults(this.condition)
       .subscribe((res:any[]) => {
         for(const ele of res ){
           ele.label=ele.city;
-          ele.value=ele.temperature;
+          ele.value=ele.temperature-273;
         }
         this.hottest = res;
         this.adddataSource();
       });
   }
+  years:number[]=[2012,2013,2014,2015];
+  months:number[]=[1,2,3,4,5,6,7,8,9,10,11,12];
   adddataSource(){
     this.dataSource1 = {
       "chart": {
-        "caption": "Delay Rate in ",
-        "subCaption": "At ",
+        "caption": "Top 5 Hotest Citis and its Temperature",
+        "subCaption": "",
+        "decimals":"2",
         "theme": "fint",
-        "yAxisMaxValue": "300",
-        "yAxisMinValue": "250",
+        "yAxisMaxValue": "100",
+        "yAxisMinValue": "0",
         "allowPinMode":0,
       },
       "data": this.coldest
     }
+    setTimeout(500);
     this.dataSource2 = {
       "chart": {
-        "caption": "Delay Rate in ",
-        "subCaption": "At ",
+        "caption": "Top 5 Coldest Citis and its Temperature",
+        "subCaption": "",
+        "decimals":"2",
         "theme": "fint",
-        "yAxisMaxValue": "300",
-        "yAxisMinValue": "250",
+        "yAxisMaxValue": "100",
+        "yAxisMinValue": "0",
         "allowPinMode":0,
       },
       "data": this.hottest

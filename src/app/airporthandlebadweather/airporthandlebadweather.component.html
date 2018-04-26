@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-5">
       <div class="row">
-        <h1>Coldest Cities</h1>
+        <h1 align="center">{{description}} weather in {{airport.nativeElement.value}}</h1>
         <fusioncharts
           [id]="id1"
           [width]="width1"
@@ -12,24 +12,25 @@
           [dataSource]="dataSource1"
         ></fusioncharts>
       </div>
+        <mat-form-field>
+          <input type="text" placeholder="Airport" matInput [formControl]="myControl" [matAutocomplete]="auto" #Airport>
+          <mat-error *ngIf="myControl.invalid">You must enter a value</mat-error>
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option"
+            >{{ option.name }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
       <mat-form-field>
-        <mat-select placeholder="Select Year" [(value)]="year">
-          <mat-option *ngFor="let year of years" [value]="year">
-            {{year}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-select placeholder="Select Month"  [(value)]="month">
-          <mat-option *ngFor="let month of months" [value]="month">
-            {{month}}
+        <mat-select placeholder="Select description"  [(value)]="description">
+          <mat-option *ngFor="let description of descriptions" [value]="description">
+            {{description}}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
 
     <div class="col-md-2">
-
     </div>
     <div class="col-md-5">
       <div class="row">
@@ -49,7 +50,7 @@
       <button mat-raised-button color="primary" type="button" routerLink="../"
       >Go Back</button>
     </div>
- </div>
+  </div>
 
 </div>
 
