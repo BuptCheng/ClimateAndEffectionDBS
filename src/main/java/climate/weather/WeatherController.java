@@ -230,7 +230,7 @@ public class WeatherController {
         }else if(weather.equals("sun")){
         	query = "select distinct(to_char(w.wdate,'yyyy-mm-dd')) as wdate, w.wid as wid, w.location_id as location_id " +
                     "from weather w left outer join weather_description wd on w.wid=wd.wid left outer join location on w.location_id = location.LOCATION_ID " +
-                    "where wd.description LIKE '%sun%' and location.city_name =?1 and w.wdate between to_date('2015-01-01','yyyy-mm-dd') and " +
+                    "where wd.description LIKE '%clear%' and location.city_name =?1 and w.wdate between to_date('2015-01-01','yyyy-mm-dd') and " +
                     " to_date('2015-03-01','yyyy-mm-dd')  order by to_char(w.wdate,'yyyy-mm-dd') asc ";
         }
         System.out.println(city+weather);
