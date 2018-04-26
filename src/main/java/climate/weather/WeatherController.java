@@ -216,24 +216,25 @@ public class WeatherController {
 
     public List<String> findDate(@RequestParam(value="city", defaultValue="Boston")String city,@RequestParam(value="w", defaultValue="rain")String weather){
         String query = "";
+        
         if(weather.equals("rain")){
             query = "select distinct(to_char(w.wdate,'yyyy-mm-dd')) as wdate, w.wid as wid, w.location_id as location_id " +
                     "from weather w left outer join weather_description wd on w.wid=wd.wid left outer join location on w.location_id = location.LOCATION_ID " +
-                    "where wd.description LIKE '%rain%' and location.city_name = ?1 and w.wdate between to_date('2015-01-01','yyyy-mm-dd') and " +
+                    "where wd.description LIKE '%rain%' and location.city_name =?1 and w.wdate between to_date('2015-01-01','yyyy-mm-dd') and " +
                     " to_date('2015-03-01','yyyy-mm-dd')  order by to_char(w.wdate,'yyyy-mm-dd') asc ";
         }else if(weather.equals("snow")){
-            query = "select distinct(to_char(w.wdate,'yyyy-mm-dd')) as wdate, w.wid as wid, w.location_id as location_id" +
+        	query = "select distinct(to_char(w.wdate,'yyyy-mm-dd')) as wdate, w.wid as wid, w.location_id as location_id " +
                     "from weather w left outer join weather_description wd on w.wid=wd.wid left outer join location on w.location_id = location.LOCATION_ID " +
-                    "where wd.description LIKE '%snow%' and location.city_name = ?1 and w.wdate between to_date('2015-01-01','yyyy-mm-dd') and " +
+                    "where wd.description LIKE '%snow%' and location.city_name =?1 and w.wdate between to_date('2015-01-01','yyyy-mm-dd') and " +
                     " to_date('2015-03-01','yyyy-mm-dd')  order by to_char(w.wdate,'yyyy-mm-dd') asc ";
         }else if(weather.equals("sun")){
-            query = "select distinct(to_char(w.wdate,'yyyy-mm-dd')) as wdate, w.wid as wid, w.location_id as location_id" +
+        	query = "select distinct(to_char(w.wdate,'yyyy-mm-dd')) as wdate, w.wid as wid, w.location_id as location_id " +
                     "from weather w left outer join weather_description wd on w.wid=wd.wid left outer join location on w.location_id = location.LOCATION_ID " +
-                    "where wd.description LIKE '%clear%' and location.city_name = ?1 and w.wdate between to_date('2015-01-01','yyyy-mm-dd') and " +
+                    "where wd.description LIKE '%sun%' and location.city_name =?1 and w.wdate between to_date('2015-01-01','yyyy-mm-dd') and " +
                     " to_date('2015-03-01','yyyy-mm-dd')  order by to_char(w.wdate,'yyyy-mm-dd') asc ";
         }
-System.out.println(city+weather);
-        List<Weather> weatherResult  =entityManager.createNativeQuery(query, Weather.class).setParameter(1,city).getResultList();
+        System.out.println(city+weather);
+        List<Weather> weatherResult  =entityManager.createNativeQuery(query, Weather.class).setParameter(1, city).getResultList();
         List<String> result = new ArrayList<>();
         for(Weather w : weatherResult){
             result.add(w.getWdate());

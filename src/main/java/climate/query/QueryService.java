@@ -19,6 +19,9 @@ public class QueryService {
 
     @Autowired
     private QueryRepository queryRepository;
+    @Autowired 
+    private WeatherController WeatherController;
+    
 
     @Autowired
     private FlightQueryRepository flightQueryRepository;
@@ -173,8 +176,8 @@ public class QueryService {
 
         String airportCode = queryRepository.findCodeByAirport(airportName);
         String city = queryRepository.findCityByAirport(airportCode);
-        WeatherController weatherController = new WeatherController();
-        List<String> dates = weatherController.findDate(city, desc);
+      //  WeatherController weatherController = new WeatherController();
+        List<String> dates = WeatherController.findDate(city, desc);
 
         List<Pair<String, Double>> res = new ArrayList<>();
         Map<String, Double> avg = new HashMap<>();

@@ -53,6 +53,7 @@ export class AirporthandlebadweatherComponent implements OnInit {
           ele.label=ele.key;
           delete ele.key;
         }
+        console.log(res);
         this.lefttable = res;
         this.adddataSource();
       });
@@ -66,6 +67,7 @@ export class AirporthandlebadweatherComponent implements OnInit {
           ele.label=ele.key;
           delete ele.key;
         }
+        console.log(res);
         this.sunnytable = res;
         this.adddataSource();
       });
