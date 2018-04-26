@@ -128,7 +128,7 @@ export class CustomerReviewAnalysisComponent implements OnInit {
 
       var myobj = { };
 
-      this._dataService.getDelayResults(myobj)
+      this._dataService.getResults("ok")
             .subscribe((res:any) => {
               this.result = res;
         });

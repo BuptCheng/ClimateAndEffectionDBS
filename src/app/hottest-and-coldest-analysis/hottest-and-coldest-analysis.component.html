@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="row">
+        <h1>Coldest Cities</h1>
+        <fusioncharts
+          [id]="id1"
+          [width]="width1"
+          [height]="height1"
+          [type]="type1"
+          [dataFormat]="dataFormat1"
+          [dataSource]="dataSource1"
+        ></fusioncharts>
+      </div>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker2" placeholder="Choose a Mouth and Year"
+               [value]="thedate"  (dateInput)="thedate = $event.value"
+        >
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-5">
+      <div class="row">
+        <h1>Hotest Cities</h1>
+        <fusioncharts
+          [id]="id2"
+          [width]="width2"
+          [height]="height2"
+          [type]="type2"
+          [dataFormat]="dataFormat2"
+          [dataSource]="dataSource2"
+        ></fusioncharts>
+      </div>
+      <button mat-raised-button color="primary" type="button" class="submit"
+              (click)="search()"
+      >Submit</button>
+      <button mat-raised-button color="primary" type="button" routerLink="../"
+      >Go Back</button>
+    </div>
+ </div>
+
+</div>
+

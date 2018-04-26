@@ -53,6 +53,7 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { WeatherAndFlightResultComponent } from './weather-and-flight-result/weather-and-flight-result.component';
 import { CustomerReviewAnalysisComponent } from './customer-review-analysis/customer-review-analysis.component';
 import {DataService} from './data.service';
+import { HottestAndColdestAnalysisComponent } from './hottest-and-coldest-analysis/hottest-and-coldest-analysis.component';
 
 
 const appRoutes: Routes = [
@@ -69,6 +70,7 @@ const appRoutes: Routes = [
   { path: 'deleteaccount', component: DeleteUserComponent },
   { path: 'WeatherAndFlightResult/:airport/:month/:day/:year', component: WeatherAndFlightResultComponent },
   { path: 'CustomerReviewAnalysis', component: CustomerReviewAnalysisComponent },
+  { path: 'hotandcold', component: HottestAndColdestAnalysisComponent },
 ];
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
@@ -90,6 +92,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
     ResetpasswordComponent,
     WeatherAndFlightResultComponent,
     CustomerReviewAnalysisComponent,
+    HottestAndColdestAnalysisComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {startWith} from 'rxjs/operators/startWith';
 import {map} from 'rxjs/operators/map';
 import { NgStyle } from '@angular/common';
+import {SearchfilterService} from '../shared/searchfilter.service';
 
 
 export class Airport {
@@ -17,11 +18,10 @@ export class Airport {
   styleUrls: ['./weather-and-flight.component.css']
 })
 export class WeatherAndFlightComponent implements OnInit {
-
   @ViewChild('Airport') airport: ElementRef ;
   test:string;
-  delayOrCancelDate: any;
-  constructor() { }
+  delayOrCancelDate: any = new Date(2015,1,1);
+  constructor(private sfservice:SearchfilterService) { }
 
   myControl = new FormControl('', [Validators.required]);
 
@@ -362,7 +362,6 @@ export class WeatherAndFlightComponent implements OnInit {
   }
 
   filter(name: string): Airport[] {
-    this.test=this.airport.value;
     return this.options.filter(option =>
       option.name.toLowerCase().indexOf(name.toLowerCase()) === 0);
   }
@@ -372,7 +371,7 @@ export class WeatherAndFlightComponent implements OnInit {
   }
 
   reset(){
-    this.airport = "";
+    this.airport.nativeElement.value = "";
     this.delayOrCancelDate = "";
   }
 

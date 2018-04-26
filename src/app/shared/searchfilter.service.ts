@@ -5,4 +5,5 @@ export class SearchfilterService {
   startlocation:string;
   destinationlocation:string;
   flightdate:Date;
+  delaysearch:{date:Date,airport:string};
 }

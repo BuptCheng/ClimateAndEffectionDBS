@@ -9,18 +9,20 @@ import { DataService } from './../data.service';
   styleUrls: ['./weather-and-flight-result.component.css']
 })
 export class WeatherAndFlightResultComponent implements OnInit {
-  
+
     airport: any;
     month: any;
     day: any;
     year: any;
-    delayDate: any;a
+    delayDate: any[];
     delayresults: Array<any>;
+    condition:string;
 
   constructor(
     private _dataService: DataService,
     private route: ActivatedRoute,
-    private location: Location) {
+    private location: Location
+    ) {
 
       this.airport = this.route.snapshot.paramMap.get('airport');
       this.month = this.route.snapshot.paramMap.get('month');
@@ -28,38 +30,36 @@ export class WeatherAndFlightResultComponent implements OnInit {
       this.year = this.route.snapshot.paramMap.get('year');
       console.log("Airport " + this.airport);
 
-      this.delayDate = this.month + "/" + this.day + "/" + this.year;
-
-    
-        // Access the Data Service's getUsers() method we defined
-        /*
-        this._dataService.getUsers()
-          .subscribe(res => this.users = res);
-        */
-        var myobj = { airport: this.airport, delayDate: this.delayDate };
-        
-        this._dataService.getDelayResults(myobj)
-              .subscribe((res:any) => {
+      this.condition = 'insight/queryDelay?airport='+this.airport+'&date='+this.year + "-" + this.month + "-" + this.day;
+      console.log(this.condition);
+        this._dataService.getResults(this.condition)
+              .subscribe((res:any[]) => {
+                for(const ele of res ){
+                  ele.value = ele.value * 100 ;
+                  ele.label=ele.key;
+                  delete ele.key;
+                }
                 this.delayresults = res;
-                /* console.log("student.components get usres: res: " + res);
-                console.log("first array: " + JSON.stringify(this.users[0]));
-                console.log("name: " + this.users[0].NAME);
-                console.log("password: " + this.users[0].PASSWORD);
-                */
+                console.log(this.delayresults);
+                this.adddataSource();
           });
 
-          this.dataSource = {
-            "chart": {
-                "caption": "Harry's SuperMart",
-                "subCaption": "Top 5 stores in last month by revenue",
-                "numberprefix": "$",
-                "theme": "fint"
-            },
-            "data": this.delayresults
-        }
-          
    }
-
+  adddataSource(){
+    this.dataSource = {
+      "chart": {
+        "caption": "Delay Rate in "+this.year + "-" + this.month + "-" + this.day,
+        "subCaption": "At "+this.airport,
+        "numberSuffix": "%",
+        "decimals":"4",
+        "theme": "fint",
+        "yAxisMaxValue": "100",
+        "yAxisMinValue": "0",
+        "allowPinMode":0,
+      },
+      "data": this.delayresults
+    }
+  }
   ngOnInit() {
   }
 

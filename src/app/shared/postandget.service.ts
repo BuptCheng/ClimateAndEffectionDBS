@@ -15,7 +15,6 @@ export  class PostandgetService {
     // return this.http.post('https://udemy-ng-http.firebaseio.com/data.json',
     //   servers,
     //   {headers: headers});
-    console.log(data);
     return this.http.put(this.myurl + 'data.json',
       data,
       {headers: headers});

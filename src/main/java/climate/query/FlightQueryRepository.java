@@ -9,8 +9,8 @@ import java.util.List;
 public interface FlightQueryRepository extends CrudRepository<FlightTime, FlightTimeId> {
 
     // query for the flight with a duration
-    @Query("select f.flightTimeId.airline, f.flightTimeId.flightNum, min(f.airTime) from FlightTime f " +
-            "where f.flightTimeId.originAirport = ?1 and f.destAirport = ?2 group by f.flightTimeId.airline, f.flightTimeId.flightNum")
+    @Query("select f.flightTimeId.airline, min(f.airTime) from FlightTime f " +
+            "where f.flightTimeId.originAirport = ?1 and f.destAirport = ?2 group by f.flightTimeId.airline")
     List<Object[]> findByDuration(String origin, String dest);
 
     /**
@@ -24,4 +24,6 @@ public interface FlightQueryRepository extends CrudRepository<FlightTime, Flight
             "where f.flightTimeId.originAirport = ?1 and f.flightTimeId.date = ?2 group by f.flightTimeId.airline")
     List<Object[]> findAllFlightByAirport(String airport, Date date);
 
+    @Query("select f.flightTimeId.originAirport, count(f) from FlightTime f where f.flightTimeId.date = ?1 group by f.flightTimeId.originAirport")
+    List<Object[]> findMostFlight(Date date);
 }

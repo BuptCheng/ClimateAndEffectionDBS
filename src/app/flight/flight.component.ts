@@ -24,19 +24,8 @@ export class FlightComponent implements OnInit {
     this.sfservice.flightdate = this.date;
   }
   getAirportcode(){
-    console.log(this.startdestination+this.enddestination);
-    this.pgservice.getFcodeDatafromdatabase('findAirportCode?code='+this.startdestination)
-      .subscribe(
-        (ELEMENT: string) => {this.sfservice.startlocation = ELEMENT,
-          console.log(ELEMENT)},
-        (error) => console.log(error)
-      );
-    this.pgservice.getFcodeDatafromdatabase('findAirportCode?code='+this.enddestination)
-      .subscribe(
-        (ELEMENT: string) => {this.sfservice.destinationlocation = ELEMENT,
-          console.log(ELEMENT)},
-        (error) => console.log(error)
-      );
+    this.changestartinput();
+    this.changeendinput();
   }
   autocheck(){
     return this.startdestination===''||this.enddestination===''||this.date===null;
